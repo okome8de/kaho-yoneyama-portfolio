@@ -169,7 +169,7 @@ a {
 /* ---------- Hero (compact) ---------- */
 
 .hero {
-  padding: 36px 24px 28px;
+  padding: 28px 24px 24px;
   text-align: left;
   border-bottom: 1px solid var(--color-border);
 }
@@ -179,9 +179,13 @@ a {
   margin: 0 auto;
 }
 
+.hero-inner .eyebrow {
+  margin-bottom: 0.5em;
+}
+
 .hero-name {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin: 0 0 0.4em;
 }
 
@@ -251,18 +255,39 @@ a {
   aspect-ratio: 4 / 3;
 }
 
-/* okome_yade only: a compact 4-up gallery instead of one wide
-   profile frame — keeps the portrait screenshot from sitting in a
-   large empty box and gives the actual posts equal visual weight. */
+/* okome_yade only: the 3 post examples are the main visual;
+   the profile screenshot sits below as a small supporting proof,
+   not a large frame of its own. */
 .ig-gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
   margin-bottom: 12px;
 }
 
-.ig-gallery-item {
-  aspect-ratio: 3 / 4;
+.ig-posts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ig-post-item {
+  aspect-ratio: 1 / 1;
+}
+
+.ig-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ig-profile-item {
+  width: 56px;
+  height: 84px;
+  flex-shrink: 0;
+}
+
+.ig-profile-caption {
+  font-size: 0.75rem;
+  color: var(--color-text-soft);
 }
 
 .media-square {
@@ -276,7 +301,8 @@ a {
 }
 
 /* Long full-page website/LP screenshots: show a large top-anchored
-   crop as the preview, click through to the full image. */
+   crop as the preview. Only Expo Hostel & Cottage links through to
+   the full image — the other two are preview-only. */
 .screenshot-preview-link {
   display: block;
   cursor: zoom-in;
@@ -331,6 +357,18 @@ a {
 
 .project-card:last-child {
   margin-bottom: 0;
+}
+
+/* Desktop: visuals on the left, title/role/bullets/link on the
+   right — scannable as a work sample instead of a long article.
+   Mobile keeps the original stacked order (media, then body). */
+@media (min-width: 721px) {
+  .project-card--featured {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
 }
 
 .project-body h3 {
@@ -580,7 +618,7 @@ a {
     grid-template-columns: 1fr 1fr;
   }
 
-  .ig-gallery {
+  .ig-posts {
     grid-template-columns: repeat(2, 1fr);
   }
 
