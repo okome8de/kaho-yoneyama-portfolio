@@ -251,6 +251,20 @@ a {
   aspect-ratio: 4 / 3;
 }
 
+/* okome_yade only: a compact 4-up gallery instead of one wide
+   profile frame — keeps the portrait screenshot from sitting in a
+   large empty box and gives the actual posts equal visual weight. */
+.ig-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.ig-gallery-item {
+  aspect-ratio: 3 / 4;
+}
+
 .media-square {
   aspect-ratio: 1 / 1;
   margin-bottom: 12px;
@@ -564,6 +578,10 @@ a {
 
   .media-row {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .ig-gallery {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .design-grid {
