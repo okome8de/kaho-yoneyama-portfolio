@@ -13,6 +13,14 @@
   --color-placeholder: #e8e2d6;
   --color-media-bg: #ffffff;
 
+  /* Spark accents — used sparingly: hero wash, tag chips, stats only. */
+  --accent-coral: #c9563a;
+  --accent-coral-soft: #fbe3db;
+  --accent-yellow: #a97418;
+  --accent-yellow-soft: #f7ead0;
+  --accent-teal: #3f6b64;
+  --accent-teal-soft: #dfebe8;
+
   --font-serif: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
@@ -100,7 +108,8 @@ a {
 }
 
 .site-nav a:hover,
-.site-nav a:focus-visible {
+.site-nav a:focus-visible,
+.site-nav a.is-active {
   color: var(--color-accent);
   border-color: var(--color-accent);
 }
@@ -145,12 +154,37 @@ a {
 }
 
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-sans);
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin: 0 0 1em;
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* Fade-in-on-scroll utility, toggled by IntersectionObserver in
+   script.js. Elements without JS or with reduced motion stay visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 .section-intro {
@@ -172,6 +206,11 @@ a {
   padding: 28px 24px 24px;
   text-align: left;
   border-bottom: 1px solid var(--color-border);
+  background:
+    radial-gradient(ellipse 55% 90% at 12% -20%, var(--accent-coral-soft) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 90% at 88% -25%, var(--accent-teal-soft) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 70% at 50% 130%, var(--accent-yellow-soft) 0%, transparent 65%),
+    var(--color-bg);
 }
 
 .hero-inner {
@@ -215,10 +254,25 @@ a {
 .tag-list li {
   font-size: 0.72rem;
   letter-spacing: 0.03em;
-  color: var(--color-text-soft);
-  border: 1px solid var(--color-border);
   border-radius: 999px;
-  padding: 3px 12px;
+  padding: 4px 13px;
+  background: var(--color-bg-alt);
+  color: var(--color-text-soft);
+}
+
+.tag-list li:nth-child(3n+1) {
+  background: var(--accent-coral-soft);
+  color: var(--accent-coral);
+}
+
+.tag-list li:nth-child(3n+2) {
+  background: var(--accent-yellow-soft);
+  color: var(--accent-yellow);
+}
+
+.tag-list li:nth-child(3n+3) {
+  background: var(--accent-teal-soft);
+  color: var(--accent-teal);
 }
 
 /* ---------- Placeholder image boxes ---------- */
@@ -301,8 +355,7 @@ a {
 }
 
 /* Long full-page website/LP screenshots: show a large top-anchored
-   crop as the preview. Only Expo Hostel & Cottage links through to
-   the full image — the other two are preview-only. */
+   crop as the preview, click through to the full image. */
 .screenshot-preview-link {
   display: block;
   cursor: zoom-in;
@@ -359,6 +412,23 @@ a {
   margin-bottom: 0;
 }
 
+/* Card treatment: soft white surface, thin border, gentle shadow,
+   with a slight lift on hover. */
+.project-card--featured {
+  background: #fffdfa;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(43, 41, 38, 0.05);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.project-card--featured:hover {
+  box-shadow: 0 12px 28px rgba(43, 41, 38, 0.08);
+  border-color: var(--accent-teal-soft);
+  transform: translateY(-3px);
+}
+
 /* Desktop: visuals on the left, title/role/bullets/link on the
    right — scannable as a work sample instead of a long article.
    Mobile keeps the original stacked order (media, then body). */
@@ -384,10 +454,20 @@ a {
   font-family: var(--font-sans);
   font-size: 0.7rem;
   letter-spacing: 0.05em;
-  color: var(--color-text-soft);
-  border: 1px solid var(--color-border);
   border-radius: 999px;
-  padding: 3px 10px;
+  padding: 3px 11px;
+  background: var(--accent-teal-soft);
+  color: var(--accent-teal);
+}
+
+.project-card--featured:nth-of-type(1) .tag {
+  background: var(--accent-coral-soft);
+  color: var(--accent-coral);
+}
+
+.project-card--featured:nth-of-type(3) .tag {
+  background: var(--accent-yellow-soft);
+  color: var(--accent-yellow);
 }
 
 .project-role {
@@ -439,7 +519,7 @@ a {
 .stats-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 10px;
   list-style: none;
   padding: 0;
   margin: 0 0 1.2em;
@@ -448,16 +528,27 @@ a {
 .stats-row li {
   display: flex;
   flex-direction: column;
+  background: var(--accent-coral-soft);
+  border-radius: 10px;
+  padding: 8px 14px;
+}
+
+.stats-row li:nth-child(2) {
+  background: var(--accent-teal-soft);
 }
 
 .stats-row strong {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
-  color: var(--color-accent);
+  font-size: 1.1rem;
+  color: var(--accent-coral);
+}
+
+.stats-row li:nth-child(2) strong {
+  color: var(--accent-teal);
 }
 
 .stats-row span {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--color-text-soft);
 }
 
@@ -474,6 +565,19 @@ a {
   grid-template-columns: repeat(2, 1fr);
   gap: 40px 32px;
   margin-top: 32px;
+}
+
+.design-card {
+  background: #fffdfa;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 20px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.design-card:hover {
+  box-shadow: 0 8px 20px rgba(43, 41, 38, 0.07);
+  transform: translateY(-2px);
 }
 
 .design-card h3 {
@@ -497,6 +601,12 @@ a {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.banner-item:hover {
+  box-shadow: 0 6px 16px rgba(43, 41, 38, 0.08);
+  transform: translateY(-2px);
 }
 
 .banner-item img {
@@ -552,6 +662,36 @@ a {
   font-family: var(--font-serif);
   font-size: 1.1rem;
   margin: 0;
+}
+
+/* ---------- Back to top ---------- */
+
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(43, 41, 38, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 30;
+}
+
+.back-to-top[hidden] {
+  display: none;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(43, 41, 38, 0.26);
 }
 
 /* ---------- Footer ---------- */
@@ -628,5 +768,39 @@ a {
 
   .banner-strip {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-card--featured {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .design-card {
+    padding: 16px;
+  }
+
+  .back-to-top {
+    right: 14px;
+    bottom: 14px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Respect reduced-motion preference: disable transitions/animations
+   and scroll-behavior; reveal targets stay visible without JS help. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
