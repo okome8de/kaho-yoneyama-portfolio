@@ -11,6 +11,7 @@
   --color-accent: #a15c3e;
   --color-border: #e2dbcd;
   --color-placeholder: #e8e2d6;
+  --color-media-bg: #ffffff;
 
   --font-serif: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
@@ -127,7 +128,7 @@ a {
 /* ---------- Sections ---------- */
 
 .section {
-  padding: 80px 24px;
+  padding: 64px 24px;
 }
 
 .section-alt {
@@ -165,45 +166,63 @@ a {
   margin-top: 1.4em;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (compact) ---------- */
 
 .hero {
-  padding: 140px 24px 100px;
+  padding: 36px 24px 28px;
   text-align: left;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .hero-inner {
-  max-width: var(--max-width-narrow);
+  max-width: var(--max-width);
   margin: 0 auto;
 }
 
-.hero h1 {
-  font-size: 2.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15em;
+.hero-name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  margin: 0 0 0.4em;
 }
 
 .hero-en {
   font-family: var(--font-sans);
-  font-size: 1rem;
-  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
   color: var(--color-text-soft);
 }
 
 .hero-line {
-  font-size: 1.3rem;
-  margin-top: 0.8em;
+  font-size: 0.98rem;
+  color: var(--color-text-soft);
+  max-width: 640px;
+  margin: 0 0 0.9em;
 }
 
-.hero-sub {
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tag-list li {
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
   color: var(--color-text-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 3px 12px;
 }
 
 /* ---------- Placeholder image boxes ---------- */
+/* Screenshots and design assets are shown in full (object-fit: contain),
+   anchored to the top, on a plain white ground — never center-cropped. */
 
 .placeholder-box {
-  background: var(--color-placeholder);
+  background: var(--color-media-bg);
   border: 1px solid var(--color-border);
   overflow: hidden;
   border-radius: 4px;
@@ -212,11 +231,12 @@ a {
 .placeholder-box img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: top center;
 }
 
 .media-wide {
-  aspect-ratio: 16 / 9;
+  height: 380px;
   margin-bottom: 12px;
 }
 
@@ -237,13 +257,31 @@ a {
 }
 
 .media-square--wide {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: auto;
+  height: 320px;
+}
+
+/* Small, purely personal photo — center-crop is fine here. */
+.profile-photo-small {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+}
+
+.profile-photo-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 /* ---------- Project cards ---------- */
 
 .project-card {
-  margin-bottom: 72px;
+  margin-bottom: 64px;
 }
 
 .project-card:last-child {
@@ -251,11 +289,12 @@ a {
 }
 
 .project-body h3 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 10px;
+  margin-bottom: 0.3em;
 }
 
 .tag {
@@ -271,7 +310,78 @@ a {
 .project-role {
   font-size: 0.85rem;
   color: var(--color-accent);
-  margin-bottom: 1em;
+  margin: 0.6em 0 1em;
+}
+
+.ext-link {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  padding: 4px 14px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ext-link:hover,
+.ext-link:focus-visible {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ---------- Bullet lists / stats ---------- */
+
+.bullet-list {
+  list-style: none;
+  margin: 0 0 1em;
+  padding: 0;
+}
+
+.bullet-list li {
+  position: relative;
+  padding-left: 1.1em;
+  margin-bottom: 0.6em;
+  color: var(--color-text);
+}
+
+.bullet-list li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2em;
+}
+
+.stats-row li {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-row strong {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--color-accent);
+}
+
+.stats-row span {
+  font-size: 0.72rem;
+  color: var(--color-text-soft);
+}
+
+.note-line {
+  font-size: 0.8rem;
+  color: var(--color-text-soft);
+  margin-top: -0.4em;
 }
 
 /* ---------- Selected Commercial Design ---------- */
@@ -284,7 +394,7 @@ a {
 }
 
 .design-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .design-card--banners {
@@ -333,6 +443,21 @@ a {
   font-size: 0.95rem;
 }
 
+/* ---------- About (short, bottom) ---------- */
+
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 1.2em;
+}
+
+.about-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
@@ -374,15 +499,23 @@ a {
   }
 
   .hero {
-    padding: 110px 20px 70px;
+    padding: 28px 20px 22px;
   }
 
-  .hero h1 {
-    font-size: 1.9rem;
+  .hero-name {
+    font-size: 1.15rem;
   }
 
   .section {
-    padding: 56px 20px;
+    padding: 48px 20px;
+  }
+
+  .media-wide {
+    height: 220px;
+  }
+
+  .media-square--wide {
+    height: 200px;
   }
 
   .media-row {
