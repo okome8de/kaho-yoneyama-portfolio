@@ -1,19 +1,329 @@
-// Mobile navigation toggle only — no other behavior needed for this MVP.
-document.addEventListener("DOMContentLoaded", function () {
-  var toggle = document.getElementById("navToggle");
-  var nav = document.getElementById("siteNav");
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaho Yoneyama Portfolio</title>
+<meta name="description" content="米山佳穂のポートフォリオ。台湾と京都での経験を、Web・SNS・デザイン・多言語コミュニケーションに落とし込んだ仕事の記録。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-  if (!toggle || !nav) return;
+<header class="site-header">
+  <div class="header-inner">
+    <span class="site-name">Kaho Yoneyama</span>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="siteNav">
+      <a href="#work">Featured Work</a>
+      <a href="#case-study">Case Study</a>
+      <a href="#design">Design</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
 
-  toggle.addEventListener("click", function () {
-    var isOpen = nav.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  });
+<main>
 
-  nav.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", function () {
-      nav.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
-    });
-  });
-});
+  <!-- HERO (compact) -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <p class="hero-name">米山佳穂 <span class="hero-en">/ Kaho Yoneyama</span></p>
+      <p class="hero-line">多言語対応・Web/SNS運用・デザインを通して、現場の情報を伝わる形に整理しています。</p>
+      <ul class="tag-list">
+        <li>Web</li>
+        <li>SNS</li>
+        <li>Design</li>
+        <li>Hospitality</li>
+        <li>Japanese–Chinese–English</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section class="section" id="work">
+    <div class="section-inner">
+      <p class="eyebrow">Featured Work</p>
+
+      <article class="project-card project-card--featured">
+        <div class="project-media">
+          <div class="ig-gallery">
+            <div class="placeholder-box ig-gallery-item">
+              <img src="public/images/portfolio/public/images/portfolio/okome-yade-profile-44k-20260830.jpg" alt="okome_yade Instagramプロフィール画面" loading="lazy">
+            </div>
+            <div class="placeholder-box ig-gallery-item">
+              <img src="public/images/portfolio/public/images/portfolio/okome-yade-grid-overview-01.jpg" alt="okome_yade 投稿一覧のグリッド画面" loading="lazy">
+            </div>
+            <div class="placeholder-box ig-gallery-item">
+              <img src="public/images/portfolio/public/images/portfolio/okome-yade-post-audio-01.jpg" alt="okome_yade 投稿例：標準語・関西弁の音声収録" loading="lazy">
+            </div>
+            <div class="placeholder-box ig-gallery-item">
+              <img src="public/images/portfolio/public/images/portfolio/okome-yade-post-kansai-01.jpg" alt="okome_yade 投稿例：関西弁の会話例" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>okome_yade<span class="tag">Instagram</span></h3>
+          <a class="ext-link" href="https://www.instagram.com/okome_yade/" target="_blank" rel="noopener">View Instagram →</a>
+          <p class="project-role">企画 / イラスト / 翻訳 / 音声収録 / 投稿運用</p>
+          <ul class="stats-row">
+            <li><strong>約44,000</strong><span>followers</span></li>
+            <li><strong>1,000+</strong><span>posts created</span></li>
+          </ul>
+          <ul class="bullet-list">
+            <li>台湾・中国語圏の日本語学習者に向けて、日本語表現をイラストで紹介するInstagramアカウントを運営。</li>
+            <li>教材で見つけた表現をもとに、例文、標準語・関西弁の音声、会話形式の投稿へ展開。</li>
+            <li>約3年間、企画から投稿・コメント対応・次回改善まで一連の運用を継続。</li>
+          </ul>
+          <p class="tc-line">主要讀者為中文圈的日文學習者，目前約有4.4萬名追蹤者。</p>
+        </div>
+      </article>
+
+      <article class="project-card project-card--featured">
+        <div class="project-media">
+          <a class="screenshot-preview-link" href="public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" target="_blank" rel="noopener noreferrer">
+            <div class="placeholder-box media-wide screenshot-preview">
+              <img src="public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" alt="Expo Hostel &amp; Cottage ウェブサイトのトップページ" loading="lazy">
+            </div>
+          </a>
+          <a class="view-full-link" href="public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" target="_blank" rel="noopener noreferrer">View full image ↗</a>
+          <div class="media-row">
+            <div class="placeholder-box media-small">
+              <img src="public/images/portfolio/public/images/portfolio/expo-hostel-local-guide-detail-01.jpg" alt="Expo Hostel &amp; Cottage ローカルガイドページ" loading="lazy">
+            </div>
+            <div class="placeholder-box media-small">
+              <img src="public/images/portfolio/public/images/portfolio/expo-hostel-room-detail-01.jpg" alt="Expo Hostel &amp; Cottage 宿泊タイプ詳細ページ" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Expo Hostel &amp; Cottage<span class="tag">マンスリー滞在向けの新規Webサイト制作</span></h3>
+          <a class="ext-link" href="https://expo.kyoto/" target="_blank" rel="noopener">View site →</a>
+          <p class="project-role">情報設計 / コピーライティング / 写真選定 / デザイン調整 / 基本的なHTML・CSS編集 / 公開・運用</p>
+          <ul class="bullet-list">
+            <li>京都・西陣の宿泊施設で、マンスリー滞在向けの新規Webサイト制作に携わりました。</li>
+            <li>情報設計、コピーライティング、写真選定、デザイン調整、基本的なHTML・CSS編集を担当。</li>
+            <li>AIツールも活用しながら、GitHubとVercelで管理・公開しました。</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="project-card project-card--featured">
+        <div class="project-media">
+          <a class="screenshot-preview-link" href="public/images/portfolio/public/images/portfolio/expo-house-home-full-desktop-01.jpg" target="_blank" rel="noopener noreferrer">
+            <div class="placeholder-box media-wide screenshot-preview">
+              <img src="public/images/portfolio/public/images/portfolio/expo-house-home-full-desktop-01.jpg" alt="Expo House ウェブサイトのトップページ" loading="lazy">
+            </div>
+          </a>
+          <a class="view-full-link" href="public/images/portfolio/public/images/portfolio/expo-house-home-full-desktop-01.jpg" target="_blank" rel="noopener noreferrer">View full image ↗</a>
+        </div>
+        <div class="project-body">
+          <h3>Expo House<span class="tag">既存サイトのリニューアル</span></h3>
+          <a class="ext-link" href="https://expohouse.jp/" target="_blank" rel="noopener">View site →</a>
+          <p class="project-role">構成再設計 / デザイン調整 / 多言語対応 / WordPress運用</p>
+          <ul class="bullet-list">
+            <li>情報整理や更新体制に課題があった既存サイトについて、構成とデザインを見直しました。</li>
+            <li>WordPressとPolylangを使い、日本語・英語・中国語・韓国語の多言語コンテンツを確認。</li>
+            <li>必要な情報にアクセスしやすい形へ整えました。</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section class="section section-alt" id="case-study">
+    <div class="section-inner narrow">
+      <p class="eyebrow">Case Study</p>
+      <h2>国際ゲスト対応から生まれた案内改善</h2>
+
+      <div class="media-row">
+        <div class="placeholder-box media-small">
+          <img src="public/images/portfolio/public/images/portfolio/expo-guest-sento-guide-full-01.jpg" alt="銭湯の入り方を説明するイラストガイド" loading="lazy">
+        </div>
+        <div class="placeholder-box media-small">
+          <img src="public/images/portfolio/public/images/portfolio/expo-guest-checkin-guide-01.jpg" alt="チェックインや設備案内のガイド資料" loading="lazy">
+        </div>
+        <div class="placeholder-box media-small">
+          <img src="public/images/portfolio/public/images/portfolio/expo-guest-japanese-phrase-guide-01.jpg" alt="日常会話フレーズを紹介するイラストガイド" loading="lazy">
+        </div>
+      </div>
+
+      <ul class="bullet-list">
+        <li>海外ゲストから繰り返し寄せられる質問をもとに、多言語の案内資料を作成しました。</li>
+        <li>銭湯ガイド、チェックイン案内、日本語フレーズガイドなどを、イラストや分かりやすい構成で整理。</li>
+        <li>宿泊税に関する情報整理や、スプレッドシートでの管理改善にも携わっています。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SELECTED COMMERCIAL DESIGN -->
+  <section class="section" id="design">
+    <div class="section-inner">
+      <p class="eyebrow">Selected Commercial Design</p>
+      <p class="section-intro">
+        実務で手がけたグラフィック・Webデザインの一部です。
+        異なる目的や条件に合わせて、情報を整理し、視覚表現に落とし込んできました。
+      </p>
+
+      <div class="design-grid">
+
+        <article class="design-card">
+          <div class="placeholder-box media-square">
+            <img src="public/images/portfolio/public/images/portfolio/kanoa-flyer-full-01.jpg" alt="カノア鍼灸整骨院のフライヤー" loading="lazy">
+          </div>
+          <div class="placeholder-box media-square">
+            <img src="public/images/portfolio/public/images/portfolio/kanoa-character-proposal-01.jpg" alt="カノア鍼灸整骨院のキャラクターイラスト提案" loading="lazy">
+          </div>
+          <h3>カノア鍼灸整骨院</h3>
+          <p class="project-role">グラフィックデザイン / イラスト提案 / レイアウト</p>
+          <ul class="bullet-list">
+            <li>地域の鍼灸整骨院のフライヤー制作とオリジナルキャラクター案を担当。</li>
+            <li>施術メニューや店舗情報を整理し、複数のカラーバリエーションで提案。</li>
+          </ul>
+        </article>
+
+        <article class="design-card">
+          <div class="placeholder-box media-square">
+            <img src="public/images/portfolio/public/images/portfolio/historical-route-campaign-front-01.jpg" alt="歴史街道キャンペーンビジュアル（表面）" loading="lazy">
+          </div>
+          <div class="placeholder-box media-square">
+            <img src="public/images/portfolio/public/images/portfolio/historical-route-campaign-back-01.jpg" alt="歴史街道キャンペーンビジュアル（裏面）" loading="lazy">
+          </div>
+          <h3>歴史街道キャンペーンビジュアル</h3>
+          <p class="project-role">ビジュアルデザイン / レイアウト / 情報整理</p>
+          <ul class="bullet-list">
+            <li>関西の歴史文化をテーマにしたキャンペーンのビジュアルとLPデザインを担当。</li>
+            <li>写真・応募方法・賞品情報など情報量の多い内容を一つのビジュアルに整理。</li>
+          </ul>
+          <p class="note-line">※LP実装は専任エンジニアが担当</p>
+        </article>
+
+        <article class="design-card">
+          <a class="screenshot-preview-link" href="public/images/portfolio/public/images/portfolio/online-art-school-lp-full-desktop-01.jpg" target="_blank" rel="noopener noreferrer">
+            <div class="placeholder-box media-square media-square--wide screenshot-preview">
+              <img src="public/images/portfolio/public/images/portfolio/online-art-school-lp-full-desktop-01.jpg" alt="オンライン美術講座のランディングページ" loading="lazy">
+            </div>
+          </a>
+          <a class="view-full-link" href="public/images/portfolio/public/images/portfolio/online-art-school-lp-full-desktop-01.jpg" target="_blank" rel="noopener noreferrer">View full image ↗</a>
+          <div class="placeholder-box card-image-natural">
+            <img src="public/images/portfolio/public/images/portfolio/online-art-school-price-detail-01.jpg" alt="オンライン美術講座の料金プランページ" loading="lazy">
+          </div>
+          <h3>Online Art School LP</h3>
+          <a class="ext-link" href="https://www.art-school.co.jp/creie/" target="_blank" rel="noopener">View site →</a>
+          <p class="project-role">LP design / information architecture / visual layout</p>
+          <ul class="bullet-list">
+            <li>オンライン美術講座サービスのLPデザインと情報構成を担当。</li>
+            <li>講座内容・料金プラン・FAQ・申し込み導線を整理し、順を追って理解しやすい構成に。</li>
+          </ul>
+          <p class="note-line">※実装は専任エンジニアが担当</p>
+        </article>
+
+        <article class="design-card design-card--banners">
+          <h3>バナー</h3>
+          <p class="project-role">Digital Banners</p>
+          <p>ファッション、子ども向けアート講座、台湾観光、季節のギフトなど、異なる目的に合わせて制作したバナーです。</p>
+          <div class="banner-strip">
+            <div class="banner-item">
+              <img src="public/images/portfolio/public/images/portfolio/banner-fashion-gift-01.jpg" alt="ファッション・ライフスタイル系ギフトバナー" loading="lazy">
+            </div>
+            <div class="banner-item">
+              <img src="public/images/portfolio/public/images/portfolio/banner-kids-art-course-01.jpg" alt="子供向けアート講座の告知バナー" loading="lazy">
+            </div>
+            <div class="banner-item">
+              <img src="public/images/portfolio/public/images/portfolio/banner-taiwan-travel-01.jpg" alt="台湾観光プロモーションバナー" loading="lazy">
+            </div>
+            <div class="banner-item">
+              <img src="public/images/portfolio/public/images/portfolio/banner-winter-gift-01.jpg" alt="お歳暮ギフトバナー" loading="lazy">
+            </div>
+            <div class="banner-item">
+              <img src="public/images/portfolio/public/images/portfolio/banner-seasonal-gift-01.jpg" alt="季節のギフトバナー" loading="lazy">
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS / LANGUAGES -->
+  <section class="section section-alt" id="skills">
+    <div class="section-inner narrow">
+      <p class="eyebrow">Skills</p>
+      <dl class="skills-list">
+        <div>
+          <dt>Web / Content Management</dt>
+          <dd>HTML・CSSの基本編集 / WordPress / Polylang / GitHub / Vercel / Webサイト構成・更新</dd>
+        </div>
+        <div>
+          <dt>Web確認・情報整理</dt>
+          <dd>Search Consoleの基本確認 / 検索されやすさを意識した見出し・説明文の整理</dd>
+        </div>
+        <div>
+          <dt>Design</dt>
+          <dd>Photoshop / Illustrator / Canva / Procreate</dd>
+        </div>
+        <div>
+          <dt>Operations</dt>
+          <dd>Google Sheets / 業務改善 / 情報整理</dd>
+        </div>
+        <div>
+          <dt>AI Tools</dt>
+          <dd>Claude / ChatGPT（制作・編集・実装補助として活用）</dd>
+        </div>
+      </dl>
+
+      <p class="eyebrow">Languages</p>
+      <dl class="skills-list">
+        <div>
+          <dt>日本語</dt>
+          <dd>ネイティブ</dd>
+        </div>
+        <div>
+          <dt>英語</dt>
+          <dd>海外ゲスト対応・案内文作成で使用</dd>
+        </div>
+        <div>
+          <dt>中国語</dt>
+          <dd>台湾での就労・日常業務で使用</dd>
+        </div>
+      </dl>
+      <p class="tc-line">可使用中文溝通，曾在台灣生活與工作約三年。</p>
+    </div>
+  </section>
+
+  <!-- ABOUT (short, bottom) -->
+  <section class="section about" id="about">
+    <div class="section-inner narrow">
+      <p class="eyebrow">About</p>
+      <div class="about-header">
+        <div class="profile-photo-small">
+          <img src="public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt="米山佳穂のプロフィール写真" loading="lazy">
+        </div>
+        <p class="about-name">米山佳穂 <span class="hero-en">/ Kaho Yoneyama</span></p>
+      </div>
+      <p>
+        京都市立芸術大学で版画を中心に視覚表現を学んだのち、
+        台湾・台南で日本語教師として約3年間勤務。
+      </p>
+      <p>
+        帰国後はWeb・グラフィックデザインの実務を経て、
+        現在は京都の宿泊施設で海外ゲスト対応、Webサイトの構成・更新・運用、
+        SNSコンテンツ、多言語案内、業務改善に携わっています。
+      </p>
+      <p class="tc-line">曾在台灣生活與工作，對台日之間的溝通方式與文化差異有實際經驗。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Kaho Yoneyama Portfolio</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
