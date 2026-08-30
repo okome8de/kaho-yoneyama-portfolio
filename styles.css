@@ -1,0 +1,407 @@
+/* ===========================================
+   Kaho Yoneyama Portfolio — base styles
+   Minimal, editorial, warm. No frameworks.
+   =========================================== */
+
+:root {
+  --color-bg: #faf7f2;
+  --color-bg-alt: #f1ece3;
+  --color-text: #2b2926;
+  --color-text-soft: #5c574f;
+  --color-accent: #a15c3e;
+  --color-border: #e2dbcd;
+  --color-placeholder: #e8e2d6;
+
+  --font-serif: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+
+  --max-width: 1080px;
+  --max-width-narrow: 720px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+p {
+  margin: 0 0 1.2em;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  line-height: 1.4;
+  margin: 0 0 0.6em;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- Header / Nav ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 24px;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--color-text-soft);
+  padding: 4px 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text);
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding: 80px 24px;
+}
+
+.section-alt {
+  background: var(--color-bg-alt);
+}
+
+.section-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.section-inner.narrow {
+  max-width: var(--max-width-narrow);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 1em;
+}
+
+.section-intro {
+  max-width: 640px;
+  color: var(--color-text-soft);
+}
+
+.tc-line {
+  color: var(--color-text-soft);
+  font-size: 0.92rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1em;
+  margin-top: 1.4em;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: 140px 24px 100px;
+  text-align: left;
+}
+
+.hero-inner {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+}
+
+.hero-en {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-soft);
+}
+
+.hero-line {
+  font-size: 1.3rem;
+  margin-top: 0.8em;
+}
+
+.hero-sub {
+  color: var(--color-text-soft);
+}
+
+/* ---------- Placeholder image boxes ---------- */
+
+.placeholder-box {
+  background: var(--color-placeholder);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.placeholder-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-wide {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 12px;
+}
+
+.media-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.media-small {
+  aspect-ratio: 4 / 3;
+}
+
+.media-square {
+  aspect-ratio: 1 / 1;
+  margin-bottom: 12px;
+}
+
+.media-square--wide {
+  aspect-ratio: 16 / 10;
+}
+
+/* ---------- Project cards ---------- */
+
+.project-card {
+  margin-bottom: 72px;
+}
+
+.project-card:last-child {
+  margin-bottom: 0;
+}
+
+.project-body h3 {
+  font-size: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.tag {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.project-role {
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  margin-bottom: 1em;
+}
+
+/* ---------- Selected Commercial Design ---------- */
+
+.design-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 32px;
+  margin-top: 32px;
+}
+
+.design-card h3 {
+  font-size: 1.1rem;
+}
+
+.design-card--banners {
+  grid-column: 1 / -1;
+}
+
+.banner-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.banner-item {
+  aspect-ratio: 1 / 1;
+}
+
+.banner-item--tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.banner-item--wide {
+  grid-column: span 2;
+  aspect-ratio: 2 / 1;
+}
+
+/* ---------- Skills / Languages ---------- */
+
+.skills-list {
+  margin: 0 0 2.5em;
+  display: grid;
+  gap: 18px;
+}
+
+.skills-list dt {
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+}
+
+.skills-list dd {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 0.95rem;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  padding: 40px 24px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-text-soft);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .site-nav.is-open {
+    max-height: 320px;
+  }
+
+  .site-nav a {
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero {
+    padding: 110px 20px 70px;
+  }
+
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .section {
+    padding: 56px 20px;
+  }
+
+  .media-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .design-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banner-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .banner-item--tall {
+    grid-row: auto;
+  }
+
+  .banner-item--wide {
+    grid-column: span 2;
+  }
+}
