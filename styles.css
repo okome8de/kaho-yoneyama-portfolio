@@ -453,6 +453,13 @@ a {
   aspect-ratio: 2 / 1;
 }
 
+/* Banner creatives are compact ad assets, not screenshots —
+   fill the frame instead of leaving empty space around them. */
+.banner-strip img {
+  object-fit: cover;
+  object-position: center center;
+}
+
 /* ---------- Skills / Languages ---------- */
 
 .skills-list {
