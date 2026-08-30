@@ -261,6 +261,37 @@ a {
   height: 320px;
 }
 
+/* Long full-page website/LP screenshots: show a large top-anchored
+   crop as the preview, click through to the full image. */
+.screenshot-preview-link {
+  display: block;
+  cursor: zoom-in;
+}
+
+.screenshot-preview-link:hover .screenshot-preview,
+.screenshot-preview-link:focus-visible .screenshot-preview {
+  border-color: var(--color-accent);
+}
+
+.screenshot-preview img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.view-full-link {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--color-text-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin: 6px 0 12px;
+}
+
+.view-full-link:hover,
+.view-full-link:focus-visible {
+  color: var(--color-accent);
+}
+
 /* Small, purely personal photo — center-crop is fine here. */
 .profile-photo-small {
   width: 64px;
