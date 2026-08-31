@@ -314,39 +314,34 @@ a {
   aspect-ratio: 4 / 3;
 }
 
-/* okome_yade only: the 3 post examples are the main visual;
-   the profile screenshot sits below as a small supporting proof,
-   not a large frame of its own. */
+/* okome_yade only: 4 images in one balanced row — the 3 post
+   examples stay square and prominent, the profile screenshot gets
+   its own taller (portrait) column so it's readable, not a thumbnail. */
 .ig-gallery {
-  margin-bottom: 12px;
-}
-
-.ig-posts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .ig-post-item {
   aspect-ratio: 1 / 1;
 }
 
-.ig-profile-row {
+.ig-profile-cell {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .ig-profile-item {
-  width: 56px;
-  height: 84px;
-  flex-shrink: 0;
+  aspect-ratio: 3 / 4;
 }
 
 .ig-profile-caption {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--color-text-soft);
+  text-align: center;
 }
 
 .media-square {
@@ -483,20 +478,23 @@ a {
 
 .ext-link {
   display: inline-block;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--color-accent);
+  color: #fff;
+  background: var(--color-accent);
   border: 1px solid var(--color-accent);
   border-radius: 999px;
-  padding: 4px 14px;
+  padding: 6px 16px;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(43, 41, 38, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .ext-link:hover,
 .ext-link:focus-visible {
-  background: var(--color-accent);
-  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(43, 41, 38, 0.18);
 }
 
 /* ---------- Bullet lists / stats ---------- */
@@ -669,6 +667,57 @@ a {
   margin: 0;
 }
 
+/* ---------- Lightbox ---------- */
+
+.lightbox-trigger {
+  cursor: zoom-in;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 16, 0.86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  z-index: 50;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible {
+  transform: scale(1.06);
+}
+
 /* ---------- Back to top ---------- */
 
 .back-to-top {
@@ -763,7 +812,7 @@ a {
     grid-template-columns: 1fr 1fr;
   }
 
-  .ig-posts {
+  .ig-gallery {
     grid-template-columns: repeat(2, 1fr);
   }
 
