@@ -53,18 +53,16 @@
       <article class="project-card project-card--featured">
         <div class="project-media">
           <div class="ig-gallery">
-            <div class="ig-posts">
-              <div class="placeholder-box ig-post-item">
-                <img src="public/images/portfolio/public/images/portfolio/okome-yade-grid-overview-01.jpg" alt="okome_yade 投稿一覧のグリッド画面" loading="lazy">
-              </div>
-              <div class="placeholder-box ig-post-item">
-                <img src="public/images/portfolio/public/images/portfolio/okome-yade-post-audio-01.jpg" alt="okome_yade 投稿例：標準語・関西弁の音声収録" loading="lazy">
-              </div>
-              <div class="placeholder-box ig-post-item">
-                <img src="public/images/portfolio/public/images/portfolio/okome-yade-post-kansai-01.jpg" alt="okome_yade 投稿例：関西弁の会話例" loading="lazy">
-              </div>
+            <div class="placeholder-box ig-post-item">
+              <img src="public/images/portfolio/public/images/portfolio/okome-yade-grid-overview-01.jpg" alt="okome_yade 投稿一覧のグリッド画面" loading="lazy">
             </div>
-            <div class="ig-profile-row">
+            <div class="placeholder-box ig-post-item">
+              <img src="public/images/portfolio/public/images/portfolio/okome-yade-post-audio-01.jpg" alt="okome_yade 投稿例：標準語・関西弁の音声収録" loading="lazy">
+            </div>
+            <div class="placeholder-box ig-post-item">
+              <img src="public/images/portfolio/public/images/portfolio/okome-yade-post-kansai-01.jpg" alt="okome_yade 投稿例：関西弁の会話例" loading="lazy">
+            </div>
+            <div class="ig-profile-cell">
               <div class="placeholder-box ig-profile-item">
                 <img src="public/images/portfolio/public/images/portfolio/okome-yade-profile-44k-20260830.jpg" alt="okome_yade Instagramプロフィール画面" loading="lazy">
               </div>
@@ -91,12 +89,9 @@
 
       <article class="project-card project-card--featured">
         <div class="project-media">
-          <a class="screenshot-preview-link" href="public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" target="_blank" rel="noopener noreferrer">
-            <div class="placeholder-box media-wide screenshot-preview">
-              <img src="public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" alt="Expo Hostel &amp; Cottage ウェブサイトのトップページ" loading="lazy">
-            </div>
-          </a>
-          <a class="view-full-link" href="public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" target="_blank" rel="noopener noreferrer">View full image ↗</a>
+          <div class="placeholder-box media-wide screenshot-preview">
+            <img src="public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" alt="Expo Hostel &amp; Cottage ウェブサイトのトップページ" loading="lazy">
+          </div>
           <div class="media-row">
             <div class="placeholder-box media-small">
               <img src="public/images/portfolio/public/images/portfolio/expo-hostel-local-guide-detail-01.jpg" alt="Expo Hostel &amp; Cottage ローカルガイドページ" loading="lazy">
@@ -199,12 +194,13 @@
             <img src="public/images/portfolio/public/images/portfolio/historical-route-campaign-back-01.jpg" alt="歴史街道キャンペーンビジュアル（裏面）" loading="lazy">
           </div>
           <h3>歴史街道キャンペーンビジュアル</h3>
-          <p class="project-role">ビジュアルデザイン / レイアウト / 情報整理</p>
+          <p class="project-role">LPメインビジュアル制作 / ビジュアル監修 / DTPデザイン / 情報整理</p>
           <ul class="bullet-list">
-            <li>関西の歴史文化をテーマにしたキャンペーンのビジュアルとLPデザインを担当。</li>
-            <li>写真・応募方法・賞品情報など情報量の多い内容を一つのビジュアルに整理。</li>
+            <li>関西の歴史文化をテーマにしたキャンペーンで、LPのメインビジュアル制作とビジュアル監修を担当。</li>
+            <li>LP実装は専任エンジニアが担当し、追加要請に応じて同キャンペーンのチラシ用デザインも制作。</li>
+            <li>写真・応募方法・賞品情報など、情報量の多い内容をWebと紙面それぞれで伝わる形に整理しました。</li>
           </ul>
-          <p class="note-line">※LP実装は専任エンジニアが担当</p>
+          <p class="note-line">※掲載画像はチラシ用DTPデザイン。LP実装は専任エンジニアが担当。</p>
         </article>
 
         <article class="design-card">
@@ -323,11 +319,15 @@
 </main>
 
 <footer class="site-footer">
-  <p>Kaho Yoneyama Portfolio</p>
-  <p>© Kaho Yoneyama. All rights reserved.<br>Please do not reproduce, edit, or use my illustrations for AI training without permission.</p>
+  <p>© Kaho Yoneyama. All rights reserved. No reproduction, editing, or AI training use without permission.</p>
 </footer>
 
 <button id="backToTop" class="back-to-top" aria-label="ページの先頭に戻る" hidden>↑</button>
+
+<div id="lightbox" class="lightbox" hidden aria-hidden="true">
+  <button class="lightbox-close" aria-label="閉じる">✕</button>
+  <img class="lightbox-image" src="" alt="">
+</div>
 
 <script src="script.js"></script>
 </body>
