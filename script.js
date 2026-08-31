@@ -93,11 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Click-to-enlarge lightbox for portfolio images only — excludes the
-  // About profile photo, Expo Hostel/Expo House/site-screenshot links,
-  // and every external "View site" / "View Instagram" link.
+  // About profile photo and every external "View site" / "View Instagram"
+  // link. Images sharing a data-gallery value can be browsed with
+  // prev/next inside the lightbox; images without one open alone.
   var lightboxImgs = document.querySelectorAll(
     [
-      ".ig-gallery .placeholder-box img",
+      ".project-card--featured .project-media .placeholder-box img",
       "#case-study .media-row .placeholder-box img",
       ".design-card:not(.design-card--banners) .placeholder-box img",
       ".design-card--banners .banner-item img"
@@ -109,18 +110,56 @@ document.addEventListener("DOMContentLoaded", function () {
   if (lightboxImgs.length && lightbox) {
     var lightboxImage = lightbox.querySelector(".lightbox-image");
     var lightboxClose = lightbox.querySelector(".lightbox-close");
+    var lightboxPrev = lightbox.querySelector(".lightbox-prev");
+    var lightboxNext = lightbox.querySelector(".lightbox-next");
+    var lightboxCounter = lightbox.querySelector(".lightbox-counter");
     var lastFocused = null;
+    var currentGallery = [];
+    var currentIndex = 0;
+
+    var galleries = {};
+    lightboxImgs.forEach(function (img) {
+      var key = img.getAttribute("data-gallery");
+      if (!key) return;
+      if (!galleries[key]) galleries[key] = [];
+      galleries[key].push(img);
+    });
 
     var onKeydown = function (event) {
       if (event.key === "Escape") {
         closeLightbox();
+      } else if (event.key === "ArrowLeft") {
+        showRelative(-1);
+      } else if (event.key === "ArrowRight") {
+        showRelative(1);
       }
     };
 
-    function openLightbox(img) {
-      lastFocused = document.activeElement;
+    function showImage(index) {
+      currentIndex = index;
+      var img = currentGallery[currentIndex];
       lightboxImage.src = img.src;
       lightboxImage.alt = img.alt || "";
+
+      var multi = currentGallery.length > 1;
+      lightboxPrev.hidden = !multi;
+      lightboxNext.hidden = !multi;
+      lightboxCounter.hidden = !multi;
+      if (multi) {
+        lightboxCounter.textContent = (currentIndex + 1) + " / " + currentGallery.length;
+      }
+    }
+
+    function showRelative(delta) {
+      if (currentGallery.length < 2) return;
+      showImage((currentIndex + delta + currentGallery.length) % currentGallery.length);
+    }
+
+    function openLightbox(img) {
+      lastFocused = document.activeElement;
+      var key = img.getAttribute("data-gallery");
+      currentGallery = key && galleries[key] ? galleries[key] : [img];
+      showImage(currentGallery.indexOf(img));
       lightbox.hidden = false;
       lightbox.setAttribute("aria-hidden", "false");
       lightboxClose.focus();
@@ -162,5 +201,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     lightboxClose.addEventListener("click", closeLightbox);
+    lightboxPrev.addEventListener("click", function () {
+      showRelative(-1);
+    });
+    lightboxNext.addEventListener("click", function () {
+      showRelative(1);
+    });
   }
 });
