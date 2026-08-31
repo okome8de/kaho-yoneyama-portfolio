@@ -91,4 +91,76 @@ document.addEventListener("DOMContentLoaded", function () {
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     });
   }
+
+  // Click-to-enlarge lightbox for portfolio images only — excludes the
+  // About profile photo, Expo Hostel/Expo House/site-screenshot links,
+  // and every external "View site" / "View Instagram" link.
+  var lightboxImgs = document.querySelectorAll(
+    [
+      ".ig-gallery .placeholder-box img",
+      "#case-study .media-row .placeholder-box img",
+      ".design-card:not(.design-card--banners) .placeholder-box img",
+      ".design-card--banners .banner-item img"
+    ].join(", ")
+  );
+
+  var lightbox = document.getElementById("lightbox");
+
+  if (lightboxImgs.length && lightbox) {
+    var lightboxImage = lightbox.querySelector(".lightbox-image");
+    var lightboxClose = lightbox.querySelector(".lightbox-close");
+    var lastFocused = null;
+
+    var onKeydown = function (event) {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+    };
+
+    function openLightbox(img) {
+      lastFocused = document.activeElement;
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt || "";
+      lightbox.hidden = false;
+      lightbox.setAttribute("aria-hidden", "false");
+      lightboxClose.focus();
+      document.addEventListener("keydown", onKeydown);
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImage.src = "";
+      document.removeEventListener("keydown", onKeydown);
+      if (lastFocused && typeof lastFocused.focus === "function") {
+        lastFocused.focus();
+      }
+    }
+
+    lightboxImgs.forEach(function (img) {
+      img.classList.add("lightbox-trigger");
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", (img.alt || "画像") + "を拡大表示");
+
+      img.addEventListener("click", function () {
+        openLightbox(img);
+      });
+
+      img.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openLightbox(img);
+        }
+      });
+    });
+
+    lightbox.addEventListener("click", function (event) {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+  }
 });
