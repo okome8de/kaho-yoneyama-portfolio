@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Concept C2 — Reiwa Chaos (Refined)</title>
+<title>Concept C2 — Final Direction (No Characters + Language Switcher)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -113,13 +113,12 @@
   /* ---------- Video collage ---------- */
   .collage {
     position: relative;
-    width: min(620px, 92vw);
-    margin: 64px auto 0;
+    width: min(360px, 76vw);
+    margin: 56px auto 0;
   }
   .video-card {
     position: relative;
-    width: min(300px, 66vw);
-    margin: 0 auto;
+    width: 100%;
     border: 5px solid #fff;
     border-radius: 20px;
     overflow: hidden;
@@ -171,8 +170,8 @@
     z-index: 2;
   }
   .sticker-photo img { width: 100%; display: block; }
-  .sticker-photo--a { top: -10px; left: 0; transform: rotate(-11deg); }
-  .sticker-photo--b { bottom: 4px; right: 0; transform: rotate(9deg); width: 140px; }
+  .sticker-photo--a { top: -32px; left: -44px; transform: rotate(-11deg); }
+  .sticker-photo--b { bottom: -28px; right: -40px; transform: rotate(9deg); width: 140px; }
   .tape {
     position: absolute;
     top: -12px; left: 50%;
@@ -183,30 +182,16 @@
     z-index: 1;
   }
 
-  /* character sticker illustrations */
-  .char-sticker {
-    position: absolute;
-    z-index: 4;
-    filter: drop-shadow(3px 4px 0 rgba(0,0,0,0.6));
-  }
-  .char-sticker img { display: block; height: 100%; width: auto; }
-  .char--shiba { width: 62px; top: -40px; right: 64px; transform: rotate(9deg); }
-  .char--rabbit { width: 56px; bottom: -42px; left: 54px; transform: rotate(-7deg); }
-  .char--rooster { width: 66px; top: 44%; right: -58px; transform: rotate(5deg); }
-  .char--daikon { width: 48px; bottom: 2%; left: -60px; transform: rotate(10deg); }
-  .char--panda { width: 58px; top: -4%; left: -66px; transform: rotate(-6deg); }
-  .char--moai { width: 52px; bottom: 30%; right: -64px; transform: rotate(4deg); }
-
-  /* geometric ring shapes instead of lightning/bursts */
+  /* geometric ring shapes */
   .ring {
     position: absolute;
     border-radius: 50%;
     z-index: 1;
     pointer-events: none;
   }
-  .ring--1 { width: 110px; height: 110px; border: 9px solid var(--accent-purple); opacity: 0.5; top: -36px; right: -20px; }
-  .ring--2 { width: 64px; height: 64px; border: 7px solid var(--accent-yellow); opacity: 0.55; bottom: -20px; left: -30px; }
-  .ring--3 { width: 38px; height: 38px; background: var(--accent-pink); opacity: 0.45; top: 60%; left: -10px; }
+  .ring--1 { width: 100px; height: 100px; border: 9px solid var(--accent-purple); opacity: 0.55; top: -54px; right: -46px; }
+  .ring--2 { width: 60px; height: 60px; border: 7px solid var(--accent-yellow); opacity: 0.6; bottom: -40px; left: -48px; }
+  .ring--3 { width: 34px; height: 34px; background: var(--accent-pink); opacity: 0.5; top: 54%; right: -70px; }
 
   .scroll-cue {
     position: relative;
@@ -220,18 +205,13 @@
   }
 
   @media (max-width: 640px) {
-    .collage { margin-top: 88px; }
-    .sticker-photo { width: 66px; }
-    .sticker-photo--a { top: -6px; }
-    .sticker-photo--b { width: 72px; bottom: 0; }
-    .char--shiba { width: 42px; top: -30px; right: 36px; }
-    .char--rabbit { width: 40px; bottom: -30px; left: 30px; }
-    .char--rooster { width: 46px; top: auto; bottom: -34px; right: -14px; }
-    .char--daikon, .char--moai { display: none; }
-    .ring--1 { width: 58px; height: 58px; top: -22px; right: -8px; }
-    .ring--2 { width: 36px; height: 36px; bottom: -12px; left: -14px; }
+    .sticker-photo { width: 76px; }
+    .sticker-photo--a { top: -20px; left: -26px; }
+    .sticker-photo--b { width: 84px; bottom: -18px; right: -24px; }
+    .ring--1 { width: 64px; height: 64px; top: -32px; right: -26px; }
+    .ring--2 { width: 40px; height: 40px; bottom: -24px; left: -26px; }
     .ring--3 { display: none; }
-    .scroll-cue { margin-top: 50px; }
+    .scroll-cue { margin-top: 56px; }
   }
 
   /* ---------- Featured Work ---------- */
@@ -278,16 +258,142 @@
   @media (max-width: 760px) {
     .card-grid { grid-template-columns: 1fr; }
   }
+
+  /* ---------- Header / language switcher ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(12,10,16,0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+  }
+  .site-wordmark {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+  }
+  .hamburger {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 0;
+  }
+  .hamburger span {
+    width: 20px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .lang-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 24px;
+    min-width: 190px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.5);
+    padding: 8px;
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+    pointer-events: none;
+    transition: opacity 0.16s ease, transform 0.16s ease;
+    z-index: 60;
+  }
+  .lang-panel.is-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .lang-panel-label {
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    color: var(--text-soft);
+    padding: 4px 10px 6px;
+  }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: var(--text);
+    background: none;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  .lang-option:hover { background: rgba(255,46,120,0.14); }
+  .lang-option.is-active {
+    background: rgba(43,240,176,0.16);
+    color: var(--accent-mint);
+    font-weight: 700;
+  }
+  .lang-option .flag { font-size: 1rem; }
+  .lang-panel-note {
+    margin-top: 6px;
+    padding: 8px 10px 2px;
+    border-top: 1px dashed var(--border);
+    font-size: 0.6rem;
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
 </style>
 </head>
 <body>
 
-<p class="label">CONCEPT C2 — 動画ヒーロー案（改訂版／装飾をキャラクター＋図形に）</p>
+<p class="label">CONCEPT C2 — 選定デザインの最終ラフ（キャラクター撤去／4言語スイッチ配置）</p>
 <p class="note">
-  ※キャッチコピーを撤去し、名前＋一言の構成にしました。丸いセリフ風ステッカー（お箸よ！まじ最高／癖あり）と雷アイコンも撤去し、ご本人のキャラクターイラスト6体と、シンプルな図形（リング・ドット）を装飾として配置しています。<br>
-  ※「お鍋系SNSクリエイター」の表記は変更しました。別の言い回しも検討できるので候補があれば教えてください。<br>
-  ※動画本体は未共有のため、投稿スチルをプレースホルダーとして使用中です。
+  ※キャラクターイラスト6体はすべて撤去しました。装飾はリング（図形）のみです。<br>
+  ※ヘッダーに4言語スイッチ（日本語・中文・English・한국어）のUIを配置しました。表示切り替えのみで、翻訳コンテンツは未実装です。<br>
+  ※動画本体（HINABE醬.mp4）は未共有のため、投稿スチルをプレースホルダーとして使用中です。実データをいただき次第、動画に差し替えます。
 </p>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <span class="site-wordmark">米山佳穂</span>
+    <div style="position:relative;">
+      <button class="hamburger" id="menuToggle" aria-expanded="false" aria-controls="langPanel" aria-label="言語メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="lang-panel" id="langPanel" role="menu">
+        <p class="lang-panel-label">LANGUAGE / 言語</p>
+        <button class="lang-option is-active" role="menuitem" data-lang="ja"><span class="flag">🇯🇵</span> 日本語</button>
+        <button class="lang-option" role="menuitem" data-lang="zh"><span class="flag">🇨🇳</span> 中文</button>
+        <button class="lang-option" role="menuitem" data-lang="en"><span class="flag">🇬🇧</span> English</button>
+        <button class="lang-option" role="menuitem" data-lang="ko"><span class="flag">🇰🇷</span> 한국어</button>
+        <p class="lang-panel-note">※現在はUIのみです。各言語の翻訳コンテンツは今後追加予定です。</p>
+      </div>
+    </div>
+  </div>
+</header>
 
 <section class="hero-chaos">
   <div style="position:relative; z-index:2; text-align:center;">
@@ -327,13 +433,6 @@
       <div class="tape"></div>
       <img src="assets/hinabe/still-03-reibou-nabe.webp" alt="冷房の効いた部屋で食べる火鍋はの投稿スチル">
     </div>
-
-    <span class="char-sticker char--shiba"><img src="assets/characters/shiba.png" alt="柴犬キャラクター"></span>
-    <span class="char-sticker char--rabbit"><img src="assets/characters/rabbit.png" alt="うさぎキャラクター"></span>
-    <span class="char-sticker char--rooster"><img src="assets/characters/rooster.png" alt="鶏キャラクター"></span>
-    <span class="char-sticker char--daikon"><img src="assets/characters/daikon.png" alt="大根キャラクター"></span>
-    <span class="char-sticker char--panda"><img src="assets/characters/panda.png" alt="パンダキャラクター"></span>
-    <span class="char-sticker char--moai"><img src="assets/characters/moai.png" alt="モアイキャラクター"></span>
   </div>
 
   <p class="scroll-cue">SCROLL ↓ FEATURED WORK</p>
@@ -370,6 +469,44 @@
     </article>
   </div>
 </section>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('menuToggle');
+    var panel = document.getElementById('langPanel');
+    if (!toggle || !panel) return;
+
+    function closePanel() {
+      panel.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    function openPanel() {
+      panel.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (panel.classList.contains('is-open')) closePanel();
+      else openPanel();
+    });
+
+    panel.querySelectorAll('.lang-option').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        panel.querySelectorAll('.lang-option').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        closePanel();
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && e.target !== toggle) closePanel();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePanel();
+    });
+  })();
+</script>
 
 </body>
 </html>
