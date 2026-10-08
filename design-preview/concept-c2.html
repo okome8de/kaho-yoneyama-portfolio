@@ -113,56 +113,51 @@
   /* ---------- Video collage ---------- */
   .collage {
     position: relative;
-    width: min(360px, 76vw);
+    width: min(600px, 90vw);
     margin: 56px auto 0;
   }
   .video-card {
     position: relative;
-    width: 100%;
-    border: 5px solid #fff;
-    border-radius: 20px;
+    width: min(520px, 84vw);
+    margin: 0 auto;
+    border: 6px solid #fff;
+    border-radius: 22px;
     overflow: hidden;
-    transform: rotate(-4deg);
-    box-shadow: 12px 16px 0 rgba(255,46,120,0.5), 0 0 0 2px #000;
+    transform: rotate(-2deg);
+    box-shadow: 16px 20px 0 rgba(255,46,120,0.5), 0 0 0 2px #000;
     z-index: 3;
     background: #000;
   }
-  .video-card img { width: 100%; display: block; }
-  .video-card .play-overlay {
+  .video-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  .video-embed iframe {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.08);
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
   }
-  .play-overlay .play-btn {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.92);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-  }
-  .play-btn svg { width: 20px; height: 20px; fill: #111; margin-left: 3px; }
-  .video-card .ig-bar {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.82));
-    padding: 34px 14px 12px;
+  .video-caption {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.72rem;
+    padding: 10px 16px;
+    font-size: 0.78rem;
     color: #fff;
+    background: #0c0a10;
   }
-  .ig-bar .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-mint); flex-shrink: 0; }
+  .video-caption .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-mint); flex-shrink: 0; }
+  .video-caption .watch-link { margin-left: auto; color: var(--accent-mint); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.04em; }
+  .video-caption .watch-link:hover { text-decoration: underline; }
 
   .sticker-photo {
     position: absolute;
-    width: 128px;
+    width: 118px;
     border: 4px solid #fff;
     border-radius: 12px;
     overflow: hidden;
@@ -170,8 +165,8 @@
     z-index: 2;
   }
   .sticker-photo img { width: 100%; display: block; }
-  .sticker-photo--a { top: -32px; left: -44px; transform: rotate(-11deg); }
-  .sticker-photo--b { bottom: -28px; right: -40px; transform: rotate(9deg); width: 140px; }
+  .sticker-photo--a { top: -34px; left: -30px; transform: rotate(-11deg); }
+  .sticker-photo--b { bottom: -30px; right: -26px; transform: rotate(9deg); width: 128px; }
   .tape {
     position: absolute;
     top: -12px; left: 50%;
@@ -283,31 +278,24 @@
     font-size: 1rem;
     color: var(--text);
   }
-  .hamburger {
+  .lang-toggle {
     position: relative;
-    width: 42px;
-    height: 42px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 5px;
+    gap: 7px;
+    height: 42px;
+    padding: 0 14px;
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 999px;
     cursor: pointer;
-    padding: 0;
+    color: var(--text);
+    font-family: "Noto Sans JP", sans-serif;
   }
-  .hamburger span {
-    width: 20px;
-    height: 2px;
-    background: var(--text);
-    border-radius: 2px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-  }
-  .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-  .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .lang-toggle .globe { width: 17px; height: 17px; flex-shrink: 0; }
+  .lang-toggle .current-lang { font-size: 0.82rem; font-weight: 700; }
+  .lang-toggle .caret { width: 11px; height: 11px; transition: transform 0.2s ease; flex-shrink: 0; }
+  .lang-toggle[aria-expanded="true"] .caret { transform: rotate(180deg); }
   .lang-panel {
     position: absolute;
     top: calc(100% + 10px);
@@ -372,19 +360,21 @@
 <p class="label">CONCEPT C2 — 選定デザインの最終ラフ（キャラクター撤去／4言語スイッチ配置）</p>
 <p class="note">
   ※キャラクターイラスト6体はすべて撤去しました。装飾はリング（図形）のみです。<br>
-  ※ヘッダーに4言語スイッチ（日本語・中文・English・한국어）のUIを配置しました。表示切り替えのみで、翻訳コンテンツは未実装です。<br>
-  ※動画本体（HINABE醬.mp4）は未共有のため、投稿スチルをプレースホルダーとして使用中です。実データをいただき次第、動画に差し替えます。
+  ※ヘッダーの言語スイッチは、地球アイコン＋現在の言語名で分かりやすい表示に変更しました（日本語・中文・English・한국어、表示UIのみ）。<br>
+  ※HINABE醬の実際のYouTube動画を埋め込みました（https://youtu.be/ryVrdqhIAzw）。自動再生はせず、クリックで音ありの再生ができます。
 </p>
 
 <header class="site-header">
   <div class="site-header-inner">
     <span class="site-wordmark">米山佳穂</span>
     <div style="position:relative;">
-      <button class="hamburger" id="menuToggle" aria-expanded="false" aria-controls="langPanel" aria-label="言語メニューを開く">
-        <span></span><span></span><span></span>
+      <button class="lang-toggle" id="menuToggle" aria-expanded="false" aria-controls="langPanel" aria-label="表示言語を切り替える（現在：日本語）">
+        <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9z"/></svg>
+        <span class="current-lang">日本語</span>
+        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="lang-panel" id="langPanel" role="menu">
-        <p class="lang-panel-label">LANGUAGE / 言語</p>
+        <p class="lang-panel-label">LANGUAGE / 言語を選択</p>
         <button class="lang-option is-active" role="menuitem" data-lang="ja"><span class="flag">🇯🇵</span> 日本語</button>
         <button class="lang-option" role="menuitem" data-lang="zh"><span class="flag">🇨🇳</span> 中文</button>
         <button class="lang-option" role="menuitem" data-lang="en"><span class="flag">🇬🇧</span> English</button>
@@ -397,7 +387,7 @@
 
 <section class="hero-chaos">
   <div style="position:relative; z-index:2; text-align:center;">
-    <span class="eyebrow-badge">企画も、現場も、なんでもやる人。</span>
+    <span class="eyebrow-badge">企画も、現場も、なんでもやりたい。</span>
   </div>
 
   <div class="headline-zone">
@@ -405,7 +395,7 @@
     <p class="name-en">KAHO YONEYAMA ／ PORTFOLIO SITE</p>
     <p class="sub-copy">
       日本語学習コンテンツのSNS運用、Web・グラフィック制作、海外ゲスト対応。
-      ジャンルを問わず、企画から現場対応まで一人でやってきました。
+      ジャンルを問わず、企画から現場対応まで担当してきました。
     </p>
   </div>
 
@@ -420,13 +410,13 @@
     </div>
 
     <div class="video-card">
-      <img src="assets/hinabe/still-01-ohashi.webp" alt="お箸よ！の投稿スチル（HINABE醬プレースホルダー）">
-      <div class="play-overlay">
-        <span class="play-btn">
-          <svg viewBox="0 0 24 24"><path d="M6 4 L20 12 L6 20 Z"/></svg>
-        </span>
+      <div class="video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/ryVrdqhIAzw?rel=0&modestbranding=1" title="HINABE醬 ｜ 米山佳穂" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
-      <div class="ig-bar"><span class="dot"></span> HINABE醬 ｜ 米山佳穂</div>
+      <div class="video-caption">
+        <span class="dot"></span> HINABE醬 ｜ 米山佳穂
+        <a class="watch-link" href="https://youtu.be/ryVrdqhIAzw" target="_blank" rel="noopener">YouTubeで見る ↗</a>
+      </div>
     </div>
 
     <div class="sticker-photo sticker-photo--b">
@@ -491,10 +481,14 @@
       else openPanel();
     });
 
+    var currentLangLabel = toggle.querySelector('.current-lang');
     panel.querySelectorAll('.lang-option').forEach(function (btn) {
       btn.addEventListener('click', function () {
         panel.querySelectorAll('.lang-option').forEach(function (b) { b.classList.remove('is-active'); });
         btn.classList.add('is-active');
+        if (currentLangLabel) {
+          currentLangLabel.textContent = btn.textContent.trim();
+        }
         closePanel();
       });
     });

@@ -8,44 +8,81 @@
 <meta name="robots" content="index, follow, noai, noimageai">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<style>
-  /* The banner strip in Other Works holds images at mixed aspect
-     ratios. styles.css's .banner-strip is a grid with the default
-     align-items: stretch, which forces every item in a row to match
-     the tallest one, leaving blank space under shorter banners.
-     Scoped to this page's Other Works section only. */
-  #design .banner-strip {
-    align-items: start;
-  }
-</style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="header-inner">
-    <span class="site-name">Kaho Yoneyama</span>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="メニューを開く">
-      <span></span><span></span><span></span>
-    </button>
+    <span class="site-name">
+      <img class="site-logo-icon" src="public/images/tomato-icon.png" alt="米山佳穂">
+      <span class="site-name-text">Kaho Yoneyama</span>
+    </span>
     <nav class="site-nav" id="siteNav">
       <a href="#work">Featured Work</a>
       <a href="#design">Design</a>
       <a href="#skills">Skills</a>
       <a href="#about">About</a>
     </nav>
+    <div class="lang-switch">
+      <button class="lang-toggle" id="langToggle" aria-expanded="false" aria-controls="langPanel" aria-label="表示言語を切り替える（現在：日本語）">
+        <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9z"/></svg>
+        <span class="current-lang">日本語</span>
+        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="lang-panel" id="langPanel" role="menu">
+        <p class="lang-panel-label">LANGUAGE / 言語を選択</p>
+        <button class="lang-option is-active" role="menuitem" data-lang="ja"><span class="flag">🇯🇵</span> 日本語</button>
+        <button class="lang-option" role="menuitem" data-lang="zh"><span class="flag">🇨🇳</span> 中文</button>
+        <button class="lang-option" role="menuitem" data-lang="en"><span class="flag">🇬🇧</span> English</button>
+        <button class="lang-option" role="menuitem" data-lang="ko"><span class="flag">🇰🇷</span> 한국어</button>
+        <p class="lang-panel-note">※現在はUIのみです。各言語の翻訳コンテンツは今後追加予定です。</p>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
 <main>
 
-  <!-- HERO (simple) -->
+  <!-- HERO + HINABE醬 (main featured video) -->
   <section class="hero" id="top">
     <div class="hero-inner">
-      <p class="hero-name">米山佳穂</p>
-      <p class="eyebrow">コンテンツ企画・制作 / SNS・Web運用</p>
+      <p class="hero-name">米山佳穂 <span class="hero-en">/ Kaho Yoneyama</span></p>
       <p class="hero-line">日本語学習コンテンツのSNS運用、Web・グラフィック制作、海外ゲスト対応に携わってきました。相手の疑問や反応をもとに、伝える内容と見せ方を工夫し、制作から公開後の運用まで取り組んでいます。</p>
+      <ul class="tag-list">
+        <li>SNS企画・運用</li>
+        <li>Web制作</li>
+        <li>グラフィック・バナーデザイン</li>
+        <li>イラスト・映像制作</li>
+        <li>海外ゲスト対応</li>
+        <li>日本語 / 中国語 / 英語</li>
+      </ul>
     </div>
+
+    <div class="hero-video-wrap">
+      <span class="ring ring--1"></span>
+      <span class="ring ring--2"></span>
+      <span class="ring ring--3"></span>
+      <div class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube-nocookie.com/embed/ryVrdqhIAzw?rel=0&modestbranding=1" title="HINABE醬 ｜ 米山佳穂" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="video-caption">
+          <span class="dot"></span> HINABE醬 ｜ 米山佳穂
+          <a class="watch-link" href="https://youtu.be/ryVrdqhIAzw" target="_blank" rel="noopener">YouTubeで見る ↗</a>
+        </div>
+      </div>
+    </div>
+    <p class="hero-video-note">
+      台湾で暮らし、ほぼ毎日のように鍋を食べていた時期に作った自主制作の短編映像です。台湾の食文化への愛着と、日本と台湾をつなぐ作品を作りたいという気持ちが、制作のきっかけになりました。<br>
+      担当：企画・イラスト・撮影・編集・音の制作（Premiere Pro使用）
+    </p>
   </section>
 
   <!-- FEATURED WORK -->
@@ -92,16 +129,16 @@
       </article>
 
       <article class="project-card project-card--featured">
-        <div class="project-media">
+        <div>
           <div class="placeholder-box media-wide screenshot-preview">
-            <img src="public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" alt="Expo Hostel &amp; Cottage ウェブサイトのトップページ" loading="lazy" data-gallery="expo-hostel">
+            <img src="public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" alt="Expo Hostel &amp; Cottage ウェブサイトのトップページ" loading="lazy">
           </div>
           <div class="media-row">
             <div class="placeholder-box media-small">
-              <img src="public/images/portfolio/public/images/portfolio/expo-hostel-local-guide-detail-01.jpg" alt="Expo Hostel &amp; Cottage ローカルガイドページ" loading="lazy" data-gallery="expo-hostel">
+              <img src="public/images/portfolio/public/images/portfolio/expo-hostel-local-guide-detail-01.jpg" alt="Expo Hostel &amp; Cottage ローカルガイドページ" loading="lazy">
             </div>
             <div class="placeholder-box media-small">
-              <img src="public/images/portfolio/public/images/portfolio/expo-hostel-room-detail-01.jpg" alt="Expo Hostel &amp; Cottage 宿泊タイプ詳細ページ" loading="lazy" data-gallery="expo-hostel">
+              <img src="public/images/portfolio/public/images/portfolio/expo-hostel-room-detail-01.jpg" alt="Expo Hostel &amp; Cottage 宿泊タイプ詳細ページ" loading="lazy">
             </div>
           </div>
         </div>
@@ -117,9 +154,9 @@
       </article>
 
       <article class="project-card project-card--featured">
-        <div class="project-media">
+        <div>
           <div class="placeholder-box media-wide screenshot-preview">
-            <img src="public/images/portfolio/public/images/portfolio/expo-house-home-full-desktop-01.jpg" alt="Expo House ウェブサイトのトップページ" loading="lazy" data-gallery="expo-house">
+            <img src="public/images/portfolio/public/images/portfolio/expo-house-home-full-desktop-01.jpg" alt="Expo House ウェブサイトのトップページ" loading="lazy">
           </div>
         </div>
         <div class="project-body">
@@ -176,19 +213,19 @@
 
       <div class="design-grid">
 
-        <article class="design-card">
+        <article class="design-card design-card--website">
           <div class="placeholder-box media-square media-square--wide screenshot-preview">
-            <img src="public/images/portfolio/public/images/portfolio/online-art-school-lp-full-desktop-01.jpg" alt="オンライン美術講座のランディングページ" loading="lazy" data-gallery="art-school">
+            <img src="public/images/portfolio/public/images/portfolio/online-art-school-lp-full-desktop-01.jpg" alt="オンライン美術講座のランディングページ" loading="lazy">
           </div>
           <div class="media-row">
             <div class="placeholder-box media-small">
-              <img src="public/images/portfolio/public/images/portfolio/online-art-school-course-detail-01.jpg" alt="オンライン美術講座の講座内容ページ" loading="lazy" data-gallery="art-school">
+              <img src="public/images/portfolio/public/images/portfolio/online-art-school-course-detail-01.jpg" alt="オンライン美術講座の講座内容ページ" loading="lazy">
             </div>
             <div class="placeholder-box media-small">
-              <img src="public/images/portfolio/public/images/portfolio/online-art-school-price-detail-01.jpg" alt="オンライン美術講座の料金プランページ" loading="lazy" data-gallery="art-school">
+              <img src="public/images/portfolio/public/images/portfolio/online-art-school-price-detail-01.jpg" alt="オンライン美術講座の料金プランページ" loading="lazy">
             </div>
             <div class="placeholder-box media-small">
-              <img src="public/images/portfolio/public/images/portfolio/online-art-school-faq-detail-01.jpg" alt="オンライン美術講座のFAQページ" loading="lazy" data-gallery="art-school">
+              <img src="public/images/portfolio/public/images/portfolio/online-art-school-faq-detail-01.jpg" alt="オンライン美術講座のFAQページ" loading="lazy">
             </div>
           </div>
           <h3>Online Art School LP</h3>

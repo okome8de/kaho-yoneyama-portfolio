@@ -1,21 +1,78 @@
-// Mobile navigation toggle only — no other behavior needed for this MVP.
 document.addEventListener("DOMContentLoaded", function () {
+  // Reveal the header's name text once the page has scrolled past the
+  // hero (which already shows the full name), so it isn't shown twice
+  // at once near the top.
+  var siteHeader = document.querySelector(".site-header");
+  if (siteHeader) {
+    var updateHeaderScrolled = function () {
+      siteHeader.classList.toggle("is-scrolled", window.scrollY > 120);
+    };
+    window.addEventListener("scroll", updateHeaderScrolled, { passive: true });
+    updateHeaderScrolled();
+  }
+
   var toggle = document.getElementById("navToggle");
   var nav = document.getElementById("siteNav");
 
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener("click", function () {
-    var isOpen = nav.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  });
-
-  nav.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", function () {
-      nav.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
+  if (toggle && nav) {
+    toggle.addEventListener("click", function () {
+      var isOpen = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
-  });
+
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  // Header language switcher (display UI only — no translated content yet).
+  var langToggle = document.getElementById("langToggle");
+  var langPanel = document.getElementById("langPanel");
+  if (langToggle && langPanel) {
+    var closeLangPanel = function () {
+      langPanel.classList.remove("is-open");
+      langToggle.setAttribute("aria-expanded", "false");
+    };
+    var openLangPanel = function () {
+      langPanel.classList.add("is-open");
+      langToggle.setAttribute("aria-expanded", "true");
+    };
+
+    langToggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      if (langPanel.classList.contains("is-open")) {
+        closeLangPanel();
+      } else {
+        openLangPanel();
+      }
+    });
+
+    var currentLangLabel = langToggle.querySelector(".current-lang");
+    langPanel.querySelectorAll(".lang-option").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        langPanel.querySelectorAll(".lang-option").forEach(function (b) {
+          b.classList.remove("is-active");
+        });
+        btn.classList.add("is-active");
+        if (currentLangLabel) {
+          currentLangLabel.textContent = btn.textContent.trim();
+        }
+        closeLangPanel();
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!langPanel.contains(event.target) && event.target !== langToggle) {
+        closeLangPanel();
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeLangPanel();
+    });
+  }
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -96,11 +153,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // About profile photo and every external "View site" / "View Instagram"
   // link. Images sharing a data-gallery value can be browsed with
   // prev/next inside the lightbox; images without one open alone.
+  // Live website screenshots (.design-card--website, or any card missing
+  // the .project-media wrapper) are excluded on purpose: for a real site,
+  // the "View site" link is the enlarge — not a static screenshot.
   var lightboxImgs = document.querySelectorAll(
     [
       ".project-card--featured .project-media .placeholder-box img",
       "#case-study .media-row .placeholder-box img",
-      ".design-card:not(.design-card--banners) .placeholder-box img",
+      ".design-card:not(.design-card--banners):not(.design-card--website) .placeholder-box img",
       ".design-card--banners .banner-item img"
     ].join(", ")
   );
