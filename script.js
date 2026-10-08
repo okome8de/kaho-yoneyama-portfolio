@@ -28,7 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Header language switcher (display UI only — no translated content yet).
+  // Header language switcher — each option is a real link to that
+  // language's version of the current page; this just handles the
+  // dropdown open/close UI.
   var langToggle = document.getElementById("langToggle");
   var langPanel = document.getElementById("langPanel");
   if (langToggle && langPanel) {
@@ -48,20 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         openLangPanel();
       }
-    });
-
-    var currentLangLabel = langToggle.querySelector(".current-lang");
-    langPanel.querySelectorAll(".lang-option").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        langPanel.querySelectorAll(".lang-option").forEach(function (b) {
-          b.classList.remove("is-active");
-        });
-        btn.classList.add("is-active");
-        if (currentLangLabel) {
-          currentLangLabel.textContent = btn.textContent.trim();
-        }
-        closeLangPanel();
-      });
     });
 
     document.addEventListener("click", function (event) {
