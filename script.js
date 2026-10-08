@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Reveal the header's name text once the page has scrolled past the
+  // hero (which already shows the full name), so it isn't shown twice
+  // at once near the top.
+  var siteHeader = document.querySelector(".site-header");
+  if (siteHeader) {
+    var updateHeaderScrolled = function () {
+      siteHeader.classList.toggle("is-scrolled", window.scrollY > 120);
+    };
+    window.addEventListener("scroll", updateHeaderScrolled, { passive: true });
+    updateHeaderScrolled();
+  }
+
   var toggle = document.getElementById("navToggle");
   var nav = document.getElementById("siteNav");
 

@@ -94,10 +94,36 @@ a {
 }
 
 .site-name {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   font-family: var(--font-serif);
   font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: 0.02em;
+}
+
+.site-logo-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+/* The name text stays hidden while the hero (which already shows the
+   full name) is in view, and fades in once you scroll past it — avoids
+   showing "Kaho Yoneyama" twice at once at the top of the page. */
+.site-name-text {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease, max-width 0.3s ease;
+}
+
+.site-header.is-scrolled .site-name-text {
+  max-width: 220px;
+  opacity: 1;
 }
 
 .site-nav {
