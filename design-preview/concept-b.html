@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept B — Playful Pop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fffaf4;
+    --bg-wash: #ffeef2;
+    --text: #2f2a2e;
+    --text-soft: #6b6269;
+    --border: #f0dfe4;
+    --card-bg: #ffffff;
+    --accent-pink: #ff6f91;
+    --accent-pink-soft: #ffe1e8;
+    --accent-mint: #2fb894;
+    --accent-mint-soft: #d9f3ec;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: "Kiwi Maru", "Noto Sans JP", serif; margin: 0; font-weight: 500; }
+  .label {
+    text-align: center;
+    padding: 10px;
+    background: #222;
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background:
+      radial-gradient(ellipse 60% 70% at 15% 0%, var(--accent-mint-soft) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 70% at 100% 10%, var(--accent-pink-soft) 0%, transparent 60%),
+      var(--bg);
+    padding: 64px 24px 72px;
+  }
+  .hero-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 44px;
+    align-items: center;
+  }
+  .hero-portrait { justify-self: center; position: relative; }
+  .bubble-frame {
+    position: relative;
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--accent-pink-soft);
+    border: 5px solid #fff;
+    box-shadow: 0 10px 28px rgba(255,111,145,0.28);
+  }
+  .bubble-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bubble-tail {
+    position: absolute;
+    bottom: 18px;
+    right: -6px;
+    width: 46px;
+    height: 46px;
+    background: #fff;
+    border-radius: 0 0 46px 0;
+    transform: rotate(18deg);
+    box-shadow: 4px 4px 10px rgba(255,111,145,0.15);
+  }
+  .sticker {
+    position: absolute;
+    font-family: "Kiwi Maru", sans-serif;
+    font-size: 0.72rem;
+    background: var(--accent-mint);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 999px;
+    transform: rotate(-9deg);
+    top: -6px;
+    left: -20px;
+    box-shadow: 0 4px 10px rgba(47,184,148,0.3);
+  }
+  .placeholder-note {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.68rem;
+    color: var(--text-soft);
+    background: #fff;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px dashed var(--border);
+  }
+
+  .hero-copy .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    color: var(--accent-mint);
+    margin-bottom: 14px;
+  }
+  .hero-name { font-size: 1.05rem; color: var(--text-soft); margin-bottom: 6px; }
+  .hero-catch {
+    font-size: 2.2rem;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+  .hero-catch mark {
+    background: linear-gradient(transparent 60%, var(--accent-pink-soft) 60%);
+    color: inherit;
+    padding: 0 2px;
+  }
+  .hero-desc {
+    max-width: 440px;
+    color: var(--text-soft);
+    font-size: 0.98rem;
+  }
+
+  /* ---------- Project card ---------- */
+  .section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+  .section-label {
+    font-family: "Kiwi Maru", sans-serif;
+    font-size: 0.95rem;
+    color: var(--accent-pink);
+    margin-bottom: 18px;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  .work-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(47,42,46,0.07);
+    transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease;
+    position: relative;
+  }
+  .work-card:hover {
+    transform: translateY(-6px) rotate(0.6deg);
+    box-shadow: 0 14px 26px rgba(47,42,46,0.12);
+  }
+  .work-card .tape {
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    width: 56px;
+    height: 20px;
+    background: var(--accent-mint-soft);
+    opacity: 0.9;
+    transform: rotate(-5deg);
+    z-index: 2;
+  }
+  .work-card .thumb {
+    height: 150px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .work-card .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .work-card .body { padding: 20px 20px 22px; }
+  .work-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .tag-row span {
+    font-size: 0.68rem;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--accent-pink-soft);
+    color: #c23763;
+  }
+  .tag-row span:nth-child(2) {
+    background: var(--accent-mint-soft);
+    color: #1d7c63;
+  }
+  .work-card p.desc {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin: 0;
+  }
+
+  @media (max-width: 760px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-copy { order: 2; }
+    .hero-portrait { order: 1; }
+    .hero-catch { font-size: 1.7rem; }
+    .hero-desc { margin: 0 auto; }
+    .card-grid { grid-template-columns: 1fr; }
+    .sticker { left: 10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .work-card { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<p class="label">CONCEPT B — Playful Pop（吹き出し × パステルピンク/ミント）</p>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-portrait">
+      <div class="bubble-frame">
+        <img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt="米山佳穂">
+        <div class="bubble-tail"></div>
+      </div>
+      <span class="sticker">Hi, I'm Kaho!</span>
+      <span class="placeholder-note">※最終的には手描きイラストに差し替え予定</span>
+    </div>
+    <div class="hero-copy">
+      <p class="hero-name">米山佳穂 / Kaho Yoneyama</p>
+      <p class="eyebrow">★ コンテンツ企画・制作 / SNS・Web運用</p>
+      <h1 class="hero-catch"><mark>伝えると、ちょっと楽しい。</mark></h1>
+      <p class="hero-desc">
+        日本語学習コンテンツのSNS運用、Web・グラフィック制作、海外ゲスト対応に携わってきました。相手の疑問や反応をもとに、伝える内容と見せ方を工夫し、制作から公開後の運用まで取り組んでいます。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">💬 Featured Work（作品カードの見本）</p>
+  <div class="card-grid">
+    <article class="work-card">
+      <div class="tape"></div>
+      <div class="thumb">
+        <img src="../public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" alt="Expo Hostel &amp; Cottage">
+      </div>
+      <div class="body">
+        <h3>Expo Hostel &amp; Cottage</h3>
+        <div class="tag-row">
+          <span>情報設計</span>
+          <span>HTML/CSS</span>
+          <span>0→1</span>
+        </div>
+        <p class="desc">新しい長期滞在サービスのWebサイトを、企画から実装・公開まで一貫して担当。</p>
+      </div>
+    </article>
+    <article class="work-card">
+      <div class="tape"></div>
+      <div class="thumb" style="background:#fdf3f6; display:flex; align-items:center; justify-content:center; color:#c79aa8; font-size:0.78rem;">他プロジェクトも同じ形式で並びます</div>
+      <div class="body">
+        <h3>Expo House</h3>
+        <div class="tag-row">
+          <span>構成再設計</span>
+          <span>多言語運用</span>
+        </div>
+        <p class="desc">既存サイトの改善・保守性向上と、継続的な更新運用を担当。</p>
+      </div>
+    </article>
+    <article class="work-card">
+      <div class="tape"></div>
+      <div class="thumb" style="background:#fdf3f6; display:flex; align-items:center; justify-content:center; color:#c79aa8; font-size:0.78rem;">okome_yade など</div>
+      <div class="body">
+        <h3>国際ゲスト対応</h3>
+        <div class="tag-row">
+          <span>情報整理</span>
+          <span>案内資料</span>
+        </div>
+        <p class="desc">繰り返し寄せられる質問をもとに、案内資料を作成・整理。</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+</body>
+</html>
