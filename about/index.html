@@ -8,6 +8,9 @@
 <meta name="robots" content="index, follow, noai, noimageai">
 <link rel="icon" type="image/png" href="../favicon.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -15,13 +18,28 @@
 <header class="site-header">
   <div class="header-inner">
     <span class="site-name">Kaho Yoneyama</span>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="メニューを開く">
-      <span></span><span></span><span></span>
-    </button>
     <nav class="site-nav" id="siteNav">
       <a href="./">About</a>
       <a href="../web-design/">Web &amp; Design</a>
     </nav>
+    <div class="lang-switch">
+      <button class="lang-toggle" id="langToggle" aria-expanded="false" aria-controls="langPanel" aria-label="表示言語を切り替える（現在：日本語）">
+        <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9z"/></svg>
+        <span class="current-lang">日本語</span>
+        <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="lang-panel" id="langPanel" role="menu">
+        <p class="lang-panel-label">LANGUAGE / 言語を選択</p>
+        <button class="lang-option is-active" role="menuitem" data-lang="ja"><span class="flag">🇯🇵</span> 日本語</button>
+        <button class="lang-option" role="menuitem" data-lang="zh"><span class="flag">🇨🇳</span> 中文</button>
+        <button class="lang-option" role="menuitem" data-lang="en"><span class="flag">🇬🇧</span> English</button>
+        <button class="lang-option" role="menuitem" data-lang="ko"><span class="flag">🇰🇷</span> 한국어</button>
+        <p class="lang-panel-note">※現在はUIのみです。各言語の翻訳コンテンツは今後追加予定です。</p>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
