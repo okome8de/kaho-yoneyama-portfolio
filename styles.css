@@ -24,8 +24,14 @@
   --accent-teal-soft: #0f2a22;
   --accent-purple: #8d6bff;
 
-  --font-serif: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
-  --font-sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+  /* Each page loads only the Google Fonts it actually needs for its
+     language; the extra family names below are harmless no-ops on
+     pages that don't load them, and let one shared stylesheet serve
+     every language variant without per-page overrides. */
+  --font-serif: "M PLUS Rounded 1c", "Noto Sans TC", "Noto Sans KR",
+    "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+  --font-sans: "Noto Sans JP", "Noto Sans TC", "Noto Sans KR", "M PLUS Rounded 1c",
+    -apple-system, BlinkMacSystemFont, "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
 
   --max-width: 1080px;
