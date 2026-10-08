@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept B2 — Playful Pop (Updated)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fffaf4;
+    --text: #2f2a2e;
+    --text-soft: #6b6269;
+    --border: #f0dfe4;
+    --card-bg: #ffffff;
+    --accent-pink: #ff6f91;
+    --accent-pink-soft: #ffe1e8;
+    --accent-mint: #2fb894;
+    --accent-mint-soft: #d9f3ec;
+    --accent-yellow: #ffcf5c;
+    --accent-yellow-soft: #fff3d6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: "Kiwi Maru", "Noto Sans JP", serif; margin: 0; font-weight: 500; }
+  .label {
+    text-align: center;
+    padding: 10px;
+    background: #222;
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+  .note {
+    text-align: center;
+    padding: 6px;
+    background: #fff3d6;
+    color: #8a6400;
+    font-size: 0.72rem;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 56px 24px 0;
+    overflow: hidden;
+  }
+  .blob-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .blob-bg span {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: 0.55;
+  }
+  .blob1 { width: 260px; height: 260px; background: radial-gradient(circle at 35% 30%, #fff, var(--accent-pink-soft) 70%); top: -60px; left: -60px; }
+  .blob2 { width: 180px; height: 180px; background: radial-gradient(circle at 35% 30%, #fff, var(--accent-mint-soft) 70%); top: 40px; right: 6%; }
+  .blob3 { width: 130px; height: 130px; background: radial-gradient(circle at 35% 30%, #fff, var(--accent-yellow-soft) 70%); bottom: -20px; left: 18%; }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 44px;
+    align-items: center;
+    padding-bottom: 64px;
+  }
+  .hero-portrait { justify-self: center; position: relative; }
+  .bubble-frame {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--accent-pink-soft);
+    border: 5px solid #fff;
+    box-shadow: 0 10px 28px rgba(255,111,145,0.25);
+  }
+  .bubble-frame img { width: 100%; height: 100%; object-fit: cover; }
+  .bubble-tail {
+    position: absolute; bottom: 16px; right: -4px;
+    width: 42px; height: 42px; background: #fff;
+    border-radius: 0 0 42px 0; transform: rotate(18deg);
+    box-shadow: 4px 4px 10px rgba(255,111,145,0.15);
+  }
+  .asset-pending {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    font-size: 0.68rem;
+    color: #8a6400;
+    background: #fff3d6;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px dashed #e8c877;
+  }
+
+  .hero-copy .logotype-placeholder {
+    font-family: "Kiwi Maru", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-bottom: 3px solid var(--accent-pink);
+    display: inline-block;
+    padding-bottom: 4px;
+    margin-bottom: 14px;
+  }
+  .hero-copy .logotype-placeholder .en {
+    display: block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-soft);
+    margin-top: 2px;
+  }
+  .hero-copy .eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.85rem; color: var(--accent-mint); margin-bottom: 16px;
+  }
+  .hero-catch {
+    font-size: 2.6rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .hero-catch mark {
+    background: var(--accent-pink-soft);
+    color: inherit;
+    padding: 2px 8px;
+    border-radius: 6px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .hero-desc { max-width: 460px; color: var(--text-soft); font-size: 0.98rem; }
+
+  /* ---------- Ribbon divider (inspired by overlapping color-band transitions) ---------- */
+  .ribbon-divider {
+    position: relative;
+    height: 64px;
+    margin-top: -1px;
+  }
+  .ribbon-divider svg { display: block; width: 100%; height: 100%; }
+
+  /* ---------- Section ---------- */
+  .section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 8px 24px 96px;
+  }
+  .section-label {
+    font-family: "Kiwi Maru", sans-serif;
+    font-size: 1.1rem;
+    color: var(--accent-pink);
+    margin-bottom: 24px;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  .work-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(47,42,46,0.07);
+    transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease;
+    position: relative;
+  }
+  .work-card:hover { transform: translateY(-6px) rotate(0.6deg); box-shadow: 0 14px 26px rgba(47,42,46,0.12); }
+  .work-card .tape {
+    position: absolute; top: -10px; left: 24px; width: 56px; height: 20px;
+    background: var(--accent-mint-soft); opacity: 0.9; transform: rotate(-5deg); z-index: 2;
+  }
+  .work-card .thumb { height: 150px; overflow: hidden; background: #fff; }
+  .work-card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .work-card .body { padding: 20px 20px 22px; }
+  .work-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .tag-row span { font-size: 0.68rem; padding: 4px 12px; border-radius: 999px; background: var(--accent-pink-soft); color: #c23763; }
+  .tag-row span:nth-child(2) { background: var(--accent-mint-soft); color: #1d7c63; }
+  .work-card p.desc { font-size: 0.85rem; color: var(--text-soft); margin: 0; }
+
+  /* ---------- Avatar comment pattern (inspired by the anniversary-timeline reference) ---------- */
+  .avatar-comment {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+  }
+  .avatar-comment .avatar {
+    width: 34px; height: 34px; border-radius: 50%; overflow: hidden;
+    flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    background: var(--accent-yellow-soft);
+  }
+  .avatar-comment .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar-comment .bubble {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    position: relative;
+  }
+  .avatar-comment .bubble::before {
+    content: "";
+    position: absolute; left: -6px; top: 10px;
+    width: 10px; height: 10px;
+    background: var(--bg);
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 760px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-copy { order: 2; }
+    .hero-portrait { order: 1; }
+    .hero-catch { font-size: 1.9rem; }
+    .hero-desc { margin: 0 auto; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .work-card { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<p class="label">CONCEPT B2 — Playful Pop（更新版：参考サイトの技法を反映）</p>
+<p class="note">※吹き出しアバター部分は、ご本人のキャラクター画像をいただき次第、実際のイラストに差し替えます（現在はプロフィール写真で仮置き）</p>
+
+<section class="hero">
+  <div class="blob-bg">
+    <span class="blob1"></span><span class="blob2"></span><span class="blob3"></span>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-portrait">
+      <div class="bubble-frame">
+        <img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt="米山佳穂">
+        <div class="bubble-tail"></div>
+      </div>
+      <span class="asset-pending">※オリジナルキャラクター画像に差し替え予定</span>
+    </div>
+    <div class="hero-copy">
+      <p class="logotype-placeholder">米山佳穂<span class="en">YONEYAMA KAHO — Portfolio Site（ロゴ画像差し替え予定）</span></p>
+      <p class="eyebrow">★ コンテンツ企画・制作 / SNS・Web運用</p>
+      <h1 class="hero-catch"><mark>伝えると、<br>ちょっと楽しい。</mark></h1>
+      <p class="hero-desc">
+        日本語学習コンテンツのSNS運用、Web・グラフィック制作、海外ゲスト対応に携わってきました。相手の疑問や反応をもとに、伝える内容と見せ方を工夫し、制作から公開後の運用まで取り組んでいます。
+      </p>
+    </div>
+  </div>
+
+  <div class="ribbon-divider">
+    <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+      <path d="M0,32 C 150,64 300,0 450,24 C 600,48 750,8 900,28 C 1050,48 1150,16 1200,32 L1200,64 L0,64 Z" fill="#ffe1e8" opacity="0.7"/>
+      <path d="M0,40 C 180,8 330,56 480,36 C 630,16 780,52 930,32 C 1050,16 1150,40 1200,40 L1200,64 L0,64 Z" fill="#d9f3ec" opacity="0.7"/>
+      <path d="M0,50 C 200,30 400,62 600,44 C 800,26 1000,58 1200,46 L1200,64 L0,64 Z" fill="#fffaf4"/>
+    </svg>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">💬 Featured Work</p>
+  <div class="card-grid">
+    <article class="work-card">
+      <div class="tape"></div>
+      <div class="thumb">
+        <img src="../public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" alt="Expo Hostel &amp; Cottage">
+      </div>
+      <div class="body">
+        <h3>Expo Hostel &amp; Cottage</h3>
+        <div class="tag-row">
+          <span>情報設計</span><span>HTML/CSS</span><span>0→1</span>
+        </div>
+        <p class="desc">新しい長期滞在サービスのWebサイトを、企画から実装・公開まで一貫して担当。</p>
+        <div class="avatar-comment">
+          <div class="avatar"><img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt=""></div>
+          <div class="bubble">写真選定からコーディングまで、ひとりで一気に作りました！</div>
+        </div>
+      </div>
+    </article>
+    <article class="work-card">
+      <div class="tape"></div>
+      <div class="thumb" style="background:#fdf3f6; display:flex; align-items:center; justify-content:center; color:#c79aa8; font-size:0.78rem;">他プロジェクトも同じ形式で並びます</div>
+      <div class="body">
+        <h3>Expo House</h3>
+        <div class="tag-row">
+          <span>構成再設計</span><span>多言語運用</span>
+        </div>
+        <p class="desc">既存サイトの改善・保守性向上と、継続的な更新運用を担当。</p>
+        <div class="avatar-comment">
+          <div class="avatar"><img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt=""></div>
+          <div class="bubble">4言語の運用、地道ですが大事な仕事です。</div>
+        </div>
+      </div>
+    </article>
+    <article class="work-card">
+      <div class="tape"></div>
+      <div class="thumb" style="background:#fdf3f6; display:flex; align-items:center; justify-content:center; color:#c79aa8; font-size:0.78rem;">okome_yade など</div>
+      <div class="body">
+        <h3>国際ゲスト対応</h3>
+        <div class="tag-row">
+          <span>情報整理</span><span>案内資料</span>
+        </div>
+        <p class="desc">繰り返し寄せられる質問をもとに、案内資料を作成・整理。</p>
+        <div class="avatar-comment">
+          <div class="avatar"><img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt=""></div>
+          <div class="bubble">実際のやり取りから生まれた、現場発の資料です。</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+</body>
+</html>
