@@ -393,8 +393,10 @@ a {
 
 .hero-inner .eyebrow {
   display: inline-flex;
+  align-items: center;
   background: var(--accent-teal-soft);
   color: var(--accent-teal);
+  border: 1.5px solid var(--accent-teal);
   font-family: var(--font-serif);
   font-weight: 700;
   text-transform: none;
@@ -406,7 +408,14 @@ a {
 }
 
 .hero-inner .eyebrow::before {
-  display: none;
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 1;
+  margin-right: 1px;
 }
 
 .hero-name {
@@ -445,25 +454,25 @@ a {
   border-radius: 999px;
   padding: 4px 13px;
   background: var(--color-card-bg);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   color: var(--color-text-soft);
 }
 
 .tag-list li:nth-child(3n+1) {
   background: var(--accent-coral-soft);
-  border-color: transparent;
+  border-color: var(--accent-coral);
   color: var(--accent-coral);
 }
 
 .tag-list li:nth-child(3n+2) {
   background: var(--accent-yellow-soft);
-  border-color: transparent;
+  border-color: var(--accent-yellow);
   color: var(--accent-yellow);
 }
 
 .tag-list li:nth-child(3n+3) {
   background: var(--accent-teal-soft);
-  border-color: transparent;
+  border-color: var(--accent-teal);
   color: var(--accent-teal);
 }
 
@@ -553,6 +562,8 @@ a {
   color: var(--color-text-soft);
   max-width: 520px;
   margin: 26px auto 0;
+  padding-top: 16px;
+  border-top: 1px dashed var(--color-border);
 }
 
 @media (max-width: 640px) {
@@ -799,24 +810,44 @@ a {
 }
 
 .ext-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: #0c0a10;
-  background: var(--accent-teal);
-  border: 1px solid var(--accent-teal);
+  color: var(--accent-teal);
+  background: var(--color-card-bg);
+  border: 1.5px solid var(--accent-teal);
   border-radius: 999px;
-  padding: 6px 16px;
+  padding: 6px 7px 6px 18px;
   text-decoration: none;
-  box-shadow: 0 2px 6px rgba(43, 240, 176, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .ext-link:hover,
 .ext-link:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(43, 240, 176, 0.3);
+  box-shadow: 0 6px 14px rgba(43, 240, 176, 0.25);
+}
+
+.ext-link .arrow-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent-teal);
+  color: #0c0a10;
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.ext-link:hover .arrow-circle,
+.ext-link:focus-visible .arrow-circle {
+  transform: translateX(2px);
 }
 
 /* ---------- Bullet lists / stats ---------- */
@@ -889,7 +920,9 @@ a {
 .note-line {
   font-size: 0.8rem;
   color: var(--color-text-soft);
-  margin-top: -0.4em;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-border);
 }
 
 /* ---------- Selected Commercial Design ---------- */
