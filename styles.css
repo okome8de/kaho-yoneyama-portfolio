@@ -591,34 +591,36 @@ a {
   aspect-ratio: 4 / 3;
 }
 
-/* okome_yade only: 4 images in one balanced row — the 3 post
-   examples stay square and prominent, the profile screenshot gets
-   its own taller (portrait) column so it's readable, not a thumbnail. */
+/* okome_yade only: a clean 2x2 grid of square tiles (3 post examples
+   + the profile screen), each filled edge-to-edge with a top-anchored
+   crop — no letterboxing, reads like a real Instagram grid preview. */
 .ig-gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.ig-post-item {
+.ig-post-item,
+.ig-profile-item {
   aspect-ratio: 1 / 1;
 }
 
-.ig-profile-cell {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.ig-gallery .placeholder-box img {
+  object-fit: cover;
+  object-position: top center;
 }
 
-.ig-profile-item {
-  aspect-ratio: 3 / 4;
+.ig-profile-cell {
+  display: contents;
 }
 
 .ig-profile-caption {
+  grid-column: 1 / -1;
   font-size: 0.7rem;
   color: var(--color-text-soft);
   text-align: center;
+  margin-top: -2px;
 }
 
 .media-square {
@@ -1187,10 +1189,6 @@ button#backToTop:focus-visible {
 
   .media-row {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .ig-gallery {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .design-grid {
