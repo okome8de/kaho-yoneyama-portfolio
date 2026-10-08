@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept C — Reiwa Chaos (Video Hero)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=M+PLUS+Rounded+1c:wght@800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0a10;
+    --bg-soft: #17131d;
+    --text: #fdfaf6;
+    --text-soft: #c7bfc9;
+    --accent-pink: #ff2e78;
+    --accent-mint: #2bf0b0;
+    --accent-yellow: #ffe14d;
+    --accent-purple: #8d6bff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .label {
+    text-align: center;
+    padding: 10px;
+    background: #fff;
+    color: #111;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+  .note {
+    text-align: center;
+    padding: 8px 16px;
+    background: var(--accent-yellow);
+    color: #332b00;
+    font-size: 0.72rem;
+    line-height: 1.7;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero-chaos {
+    position: relative;
+    padding: 56px 20px 80px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,46,120,0.18) 0%, transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(43,240,176,0.14) 0%, transparent 45%),
+      var(--bg);
+  }
+  .hero-chaos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1.2px);
+    background-size: 18px 18px;
+    pointer-events: none;
+  }
+
+  .eyebrow-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-mint);
+    color: #042e22;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 900;
+    font-size: 0.78rem;
+    padding: 7px 16px;
+    border-radius: 999px;
+    transform: rotate(-3deg);
+    box-shadow: 3px 4px 0 #000;
+    margin: 0 auto 22px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .headline-zone {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .headline {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.1rem, 6vw, 3.4rem);
+    line-height: 1.35;
+    margin: 0 0 18px;
+    letter-spacing: 0.01em;
+  }
+  .headline .pop {
+    display: inline-block;
+    color: #111;
+    background: var(--accent-yellow);
+    padding: 2px 10px;
+    border-radius: 8px;
+    transform: rotate(-2deg);
+    box-shadow: 4px 5px 0 #000;
+    margin: 4px 2px;
+  }
+  .headline .pop--pink {
+    color: #fff;
+    background: var(--accent-pink);
+  }
+  .headline .scribble {
+    font-family: "Kiwi Maru", sans-serif;
+    font-weight: 500;
+    font-size: 0.6em;
+    display: block;
+    color: var(--accent-mint);
+    margin-top: 6px;
+    transform: rotate(-1deg);
+  }
+  .sub-copy {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+    max-width: 460px;
+    margin: 0 auto 10px;
+  }
+  .alt-copy-note {
+    font-size: 0.68rem;
+    color: #7a7482;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Video collage ---------- */
+  .collage {
+    position: relative;
+    width: min(340px, 72vw);
+    margin: 44px auto 0;
+  }
+  .video-card {
+    position: relative;
+    width: 100%;
+    border: 5px solid #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    transform: rotate(-4deg);
+    box-shadow: 12px 16px 0 rgba(255,46,120,0.55), 0 0 0 2px #000;
+    z-index: 3;
+    background: #000;
+  }
+  .video-card img { width: 100%; display: block; }
+  .video-card .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.08);
+  }
+  .play-overlay .play-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  }
+  .play-btn svg { width: 20px; height: 20px; fill: #111; margin-left: 3px; }
+  .video-card .ig-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.82));
+    padding: 34px 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    color: #fff;
+  }
+  .ig-bar .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-mint); flex-shrink: 0; }
+
+  .sticker-photo {
+    position: absolute;
+    width: 128px;
+    border: 4px solid #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 6px 10px 0 rgba(0,0,0,0.5);
+    z-index: 2;
+  }
+  .sticker-photo img { width: 100%; display: block; }
+  .sticker-photo--a { top: -30px; left: -46px; transform: rotate(-11deg); }
+  .sticker-photo--b { bottom: -26px; right: -42px; transform: rotate(9deg); width: 140px; }
+  .tape {
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 48px; height: 20px;
+    background: rgba(255,225,77,0.85);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 1;
+  }
+
+  .burst {
+    position: absolute;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 900;
+    font-size: 0.7rem;
+    color: #111;
+    background: var(--accent-yellow);
+    padding: 9px 12px;
+    border-radius: 50%;
+    border: 3px solid #111;
+    box-shadow: 3px 4px 0 #000;
+    z-index: 4;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .burst--1 { top: -24px; right: -18px; transform: rotate(10deg); background: var(--accent-pink); color: #fff; border-color: #fff; }
+  .burst--2 { bottom: 30px; left: -58px; transform: rotate(-8deg); }
+  .burst--3 { top: 40%; right: -70px; transform: rotate(6deg); background: var(--accent-purple); color: #fff; border-color: #fff; }
+
+  .bolt { position: absolute; color: var(--accent-yellow); z-index: 1; opacity: 0.9; }
+  .bolt--1 { top: -46px; left: 38%; width: 26px; transform: rotate(-12deg); }
+  .bolt--2 { bottom: -50px; right: 30%; width: 22px; transform: rotate(16deg); }
+
+  .scroll-cue {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 80px;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--text-soft);
+  }
+
+  @media (max-width: 640px) {
+    .sticker-photo { width: 92px; }
+    .sticker-photo--a { left: -30px; top: -24px; }
+    .sticker-photo--b { width: 100px; right: -26px; bottom: -22px; }
+    .burst { font-size: 0.6rem; padding: 7px 9px; }
+    .burst--3 { right: -40px; }
+    .burst--2 { left: -36px; }
+    .scroll-cue { margin-top: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<p class="label">CONCEPT C — 動画ヒーロー案（HINABE醬を主役に／令和な癖あり感）</p>
+<p class="note">
+  ※動画本体（HINABE醬.mp4）はまだ共有いただいていないため、現在は投稿スチル3枚をプレースホルダーとして使用しています。実装時はこのカード部分を &lt;video&gt; に差し替えます（ループ再生・音声なし・短尺に書き出し直す想定、元ファイルが334MBあるので数MB程度に圧縮してから使います）。<br>
+  ※手描きロゴは一旦非表示にしました（左下のノイズ跡は確認します）。<br>
+  ※キャッチコピーは仮の案です。他の候補：「テキトーに見えて、ちゃんと伝える。」「笑かしながら、ちゃんと届ける。」
+</p>
+
+<section class="hero-chaos">
+  <span class="eyebrow-badge">💥 お鍋系SNSクリエイター / Web・コンテンツ制作</span>
+
+  <div class="headline-zone">
+    <h1 class="headline">
+      <span class="pop pop--pink">ふざけてる</span>ようで、<br>
+      <span class="pop">ちゃんと伝わる</span>。
+      <span class="scribble">米山佳穂のコンテンツ制作</span>
+    </h1>
+    <p class="sub-copy">
+      日本語学習コンテンツのSNS運用、Web・グラフィック制作、海外ゲスト対応。
+      くだらないノリと、ちゃんとした設計、両方でつくってます。
+    </p>
+  </div>
+
+  <div class="collage">
+    <svg class="bolt bolt--1" viewBox="0 0 24 40" fill="currentColor"><path d="M14 0 L0 24 L10 24 L8 40 L24 14 L13 14 Z"/></svg>
+    <svg class="bolt bolt--2" viewBox="0 0 24 40" fill="currentColor"><path d="M14 0 L0 24 L10 24 L8 40 L24 14 L13 14 Z"/></svg>
+
+    <div class="sticker-photo sticker-photo--a">
+      <div class="tape"></div>
+      <img src="assets/hinabe/still-02-taiwannoumi.webp" alt="台湾の海まじ最高だから！の投稿スチル">
+    </div>
+
+    <div class="video-card">
+      <img src="assets/hinabe/still-01-ohashi.webp" alt="お箸よ！の投稿スチル（HINABE醬プレースホルダー）">
+      <div class="play-overlay">
+        <span class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M6 4 L20 12 L6 20 Z"/></svg>
+        </span>
+      </div>
+      <div class="ig-bar"><span class="dot"></span> HINABE醬 ｜ 米山佳穂</div>
+    </div>
+
+    <div class="sticker-photo sticker-photo--b">
+      <div class="tape"></div>
+      <img src="assets/hinabe/still-03-reibou-nabe.webp" alt="冷房の効いた部屋で食べる火鍋はの投稿スチル">
+    </div>
+
+    <span class="burst burst--1">まじ<br>最高</span>
+    <span class="burst burst--2">お箸<br>よ！</span>
+    <span class="burst burst--3">癖<br>あり</span>
+  </div>
+
+  <p class="scroll-cue">SCROLL ↓ FEATURED WORK</p>
+</section>
+
+</body>
+</html>
