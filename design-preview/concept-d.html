@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept D — Paper Collage (YOMA-inspired)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kraft: #cbbd9c;
+    --kraft-dark: #b7a784;
+    --paper: #faf6ec;
+    --ink: #2b241d;
+    --ink-soft: #6b6153;
+    --olive: #4a5a3a;
+    --orange: #d9632b;
+    --mustard: #e3a92c;
+    --navy: #22304a;
+    --pink: #ff6f91;
+    --mint: #2fb894;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--kraft);
+    color: var(--ink);
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: "Zen Kaku Gothic New", sans-serif; margin: 0; }
+  .label {
+    text-align: center;
+    padding: 10px;
+    background: #111;
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+  .note {
+    text-align: center;
+    padding: 8px 16px;
+    background: var(--mustard);
+    color: #332200;
+    font-size: 0.72rem;
+    line-height: 1.7;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .wordmark {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+  }
+  .wordmark span { font-family: "Space Mono", monospace; font-weight: 400; font-size: 0.6rem; display: block; letter-spacing: 0.1em; color: var(--ink-soft); }
+  .stamp {
+    font-family: "Space Mono", monospace;
+    font-size: 0.65rem;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 6px 12px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---------- Hero collage ---------- */
+  .hero-board {
+    position: relative;
+    max-width: 1100px;
+    margin: 8px auto 0;
+    padding: 20px 24px 90px;
+  }
+  .hero-board::before {
+    content: "";
+    position: absolute;
+    inset: 0 8px -40px 8px;
+    background: var(--kraft-dark);
+    border-radius: 0 0 28px 28px;
+    z-index: 0;
+  }
+  .board-inner {
+    position: relative;
+    z-index: 1;
+    background: var(--paper);
+    border-radius: 22px 22px 6px 6px;
+    box-shadow: 0 18px 36px rgba(43,36,29,0.22);
+    padding: 36px 28px 64px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 28px;
+    min-height: 480px;
+  }
+
+  .intro-card {
+    background: var(--olive);
+    color: #eef3e6;
+    padding: 28px 24px;
+    border-radius: 4px;
+  }
+  .intro-card .role {
+    font-family: "Space Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: #c9d9b8;
+    margin-bottom: 10px;
+  }
+  .intro-card h1 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    margin-bottom: 14px;
+  }
+  .intro-card p {
+    font-size: 0.86rem;
+    color: #dbe5d1;
+    margin: 0;
+  }
+
+  .ring-card {
+    position: relative;
+    background: var(--mustard);
+    border-radius: 4px;
+    min-height: 180px;
+  }
+  .ring-card svg { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 4px; }
+
+  .photo-card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  }
+  .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-card .ig-tag {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: #fff;
+    font-size: 0.64rem;
+    padding: 20px 10px 8px;
+  }
+  .play-dot {
+    position: absolute; top: 10px; right: 10px;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .play-dot svg { width: 10px; height: 10px; fill: #111; margin-left: 1px; }
+
+  .profile-card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--navy);
+    display: flex;
+    align-items: flex-end;
+  }
+  .profile-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+  .profile-card span.label-chip {
+    position: relative;
+    z-index: 1;
+    margin: 10px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Space Mono", monospace;
+    font-size: 0.6rem;
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+
+  .clip {
+    position: absolute;
+    width: 26px;
+    height: 36px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .char-pin {
+    position: absolute;
+    z-index: 4;
+    filter: drop-shadow(2px 3px 2px rgba(0,0,0,0.25));
+  }
+  .char-pin img { display: block; height: 100%; width: auto; }
+
+  @media (max-width: 760px) {
+    .board-inner { grid-template-columns: 1fr; padding: 24px 18px 48px; }
+  }
+
+  /* ---------- Featured Work (dark list, YOMA "OUR PROJECTS" style) ---------- */
+  .section {
+    max-width: 1100px;
+    margin: -48px auto 0;
+    padding: 0 24px 100px;
+    position: relative;
+    z-index: 2;
+  }
+  .work-list {
+    background: #1d1a16;
+    color: #f3efe6;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 16px 30px rgba(0,0,0,0.25);
+  }
+  .work-list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .work-list-head span {
+    font-family: "Space Mono", monospace;
+    font-size: 0.64rem;
+    font-weight: 400;
+    color: #b8af9e;
+    letter-spacing: 0.06em;
+  }
+  .work-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.92rem;
+    transition: background 0.2s ease;
+  }
+  .work-row:last-child { border-bottom: none; }
+  .work-row:hover { background: rgba(255,255,255,0.04); }
+  .work-row .title { font-weight: 700; }
+  .work-row .desc { font-size: 0.76rem; color: #b8af9e; margin-top: 4px; }
+  .work-row .tag {
+    font-family: "Space Mono", monospace;
+    font-size: 0.68rem;
+    color: #c9d9b8;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .work-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<p class="label">CONCEPT D — ペーパーコラージュ案（YOMA参考）</p>
+<p class="note">
+  ※キャッチコピーは入れていません（名前＋役割＋一言のみ）。ロゴ画像は一旦なし、代わりにテキストのワードマークにしています。<br>
+  ※丸いセリフ風ステッカーは撤去し、ご本人のキャラクターイラストとリング（図形）を、紙・クリップ・付箋のコラージュ風に配置しています。<br>
+  ※動画はまだ未共有のため投稿スチルで仮置き。Featured WorkはYOMAの「OUR PROJECTS」リストを参考にしたダークな一覧形式にしています。
+</p>
+
+<div class="topbar">
+  <div class="wordmark">米山佳穂<span>KAHO YONEYAMA — PORTFOLIO</span></div>
+  <div class="stamp">2026 / JP</div>
+</div>
+
+<section class="hero-board">
+  <div class="board-inner">
+
+    <div class="intro-card">
+      <p class="role">PROFILE</p>
+      <h1>企画も、現場も、<br>なんでもやる人。</h1>
+      <p>
+        日本語学習コンテンツのSNS運用、Web・グラフィック制作、海外ゲスト対応。
+        ジャンルを問わず、企画から現場対応まで一人でやってきました。
+      </p>
+    </div>
+
+    <div class="ring-card">
+      <svg viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice">
+        <circle cx="150" cy="90" r="70" fill="none" stroke="#2b241d" stroke-width="18" opacity="0.85"/>
+        <circle cx="150" cy="90" r="45" fill="none" stroke="#faf6ec" stroke-width="14" opacity="0.9"/>
+        <circle cx="150" cy="90" r="20" fill="#ff6f91"/>
+      </svg>
+      <span class="char-pin" style="width:58px; top:8px; left:12px; transform:rotate(-8deg);">
+        <img src="assets/characters/shiba.png" alt="柴犬キャラクター">
+      </span>
+      <span class="char-pin" style="width:50px; bottom:10px; right:14px; transform:rotate(7deg);">
+        <img src="assets/characters/rabbit.png" alt="うさぎキャラクター">
+      </span>
+    </div>
+
+    <div class="photo-card" style="grid-column: span 1;">
+      <img src="assets/hinabe/still-01-ohashi.webp" alt="お箸よ！の投稿スチル（HINABE醬プレースホルダー）">
+      <span class="play-dot"><svg viewBox="0 0 24 24"><path d="M6 4 L20 12 L6 20 Z"/></svg></span>
+      <span class="ig-tag">HINABE醬 ｜ 米山佳穂</span>
+      <svg class="clip" style="top:-10px; left:16px;" viewBox="0 0 26 36" fill="none" stroke="#777" stroke-width="2.5"><rect x="4" y="2" width="18" height="30" rx="9"/><rect x="9" y="7" width="8" height="20" rx="4" fill="#faf6ec"/></svg>
+    </div>
+
+    <div class="profile-card">
+      <img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt="米山佳穂">
+      <span class="label-chip">PROFILE PHOTO (仮)</span>
+      <span class="char-pin" style="width:60px; top:10px; right:10px; transform:rotate(9deg);">
+        <img src="assets/characters/rooster.png" alt="鶏キャラクター">
+      </span>
+    </div>
+
+  </div>
+
+  <span class="char-pin" style="width:60px; bottom:30px; left:-18px; transform:rotate(-10deg); z-index:5;">
+    <img src="assets/characters/daikon.png" alt="大根キャラクター">
+  </span>
+  <span class="char-pin" style="width:70px; bottom:4px; right:60px; transform:rotate(6deg); z-index:5;">
+    <img src="assets/characters/panda.png" alt="パンダキャラクター">
+  </span>
+  <span class="char-pin" style="width:60px; bottom:-14px; left:46%; transform:rotate(3deg); z-index:5;">
+    <img src="assets/characters/moai.png" alt="モアイキャラクター">
+  </span>
+</section>
+
+<section class="section">
+  <div class="work-list">
+    <div class="work-list-head">
+      Featured Work <span>Contents / Client</span>
+    </div>
+    <div class="work-row">
+      <div>
+        <div class="title">Expo Hostel &amp; Cottage</div>
+        <div class="desc">新しい長期滞在サービスのWebサイトを、企画から実装・公開まで一貫して担当。</div>
+      </div>
+      <div class="tag">情報設計 / HTML・CSS / 0→1</div>
+    </div>
+    <div class="work-row">
+      <div>
+        <div class="title">Expo House</div>
+        <div class="desc">既存サイトの改善・保守性向上と、継続的な更新運用を担当。</div>
+      </div>
+      <div class="tag">構成再設計 / 多言語運用</div>
+    </div>
+    <div class="work-row">
+      <div>
+        <div class="title">国際ゲスト対応</div>
+        <div class="desc">繰り返し寄せられる質問をもとに、案内資料を作成・整理。</div>
+      </div>
+      <div class="tag">情報整理 / 案内資料</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

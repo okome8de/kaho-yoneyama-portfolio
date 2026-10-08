@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept C2 — Final Direction (No Characters + Language Switcher)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0a10;
+    --bg-soft: #17131d;
+    --card-bg: #1b1720;
+    --text: #fdfaf6;
+    --text-soft: #b8b0bd;
+    --border: #2d2733;
+    --accent-pink: #ff2e78;
+    --accent-mint: #2bf0b0;
+    --accent-yellow: #ffe14d;
+    --accent-purple: #8d6bff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .label {
+    text-align: center;
+    padding: 10px;
+    background: #fff;
+    color: #111;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+  .note {
+    text-align: center;
+    padding: 8px 16px;
+    background: var(--accent-yellow);
+    color: #332b00;
+    font-size: 0.72rem;
+    line-height: 1.7;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero-chaos {
+    position: relative;
+    padding: 56px 20px 64px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,46,120,0.16) 0%, transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(43,240,176,0.12) 0%, transparent 45%),
+      var(--bg);
+  }
+  .hero-chaos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1.2px);
+    background-size: 18px 18px;
+    pointer-events: none;
+  }
+
+  .eyebrow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-mint);
+    color: #042e22;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 800;
+    font-size: 0.78rem;
+    padding: 7px 16px;
+    border-radius: 999px;
+    transform: rotate(-2deg);
+    box-shadow: 3px 4px 0 #000;
+    position: relative;
+    z-index: 2;
+  }
+
+  .headline-zone {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    margin: 18px auto 0;
+    text-align: center;
+  }
+  .name-jp {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.7rem, 4.6vw, 2.3rem);
+    margin: 0 0 4px;
+  }
+  .name-en {
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    color: var(--text-soft);
+    margin: 0 0 18px;
+  }
+  .sub-copy {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Video collage ---------- */
+  .collage {
+    position: relative;
+    width: min(360px, 76vw);
+    margin: 56px auto 0;
+  }
+  .video-card {
+    position: relative;
+    width: 100%;
+    border: 5px solid #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    transform: rotate(-4deg);
+    box-shadow: 12px 16px 0 rgba(255,46,120,0.5), 0 0 0 2px #000;
+    z-index: 3;
+    background: #000;
+  }
+  .video-card img { width: 100%; display: block; }
+  .video-card .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.08);
+  }
+  .play-overlay .play-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  }
+  .play-btn svg { width: 20px; height: 20px; fill: #111; margin-left: 3px; }
+  .video-card .ig-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.82));
+    padding: 34px 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    color: #fff;
+  }
+  .ig-bar .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-mint); flex-shrink: 0; }
+
+  .sticker-photo {
+    position: absolute;
+    width: 128px;
+    border: 4px solid #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 6px 10px 0 rgba(0,0,0,0.5);
+    z-index: 2;
+  }
+  .sticker-photo img { width: 100%; display: block; }
+  .sticker-photo--a { top: -32px; left: -44px; transform: rotate(-11deg); }
+  .sticker-photo--b { bottom: -28px; right: -40px; transform: rotate(9deg); width: 140px; }
+  .tape {
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 48px; height: 20px;
+    background: rgba(255,225,77,0.85);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 1;
+  }
+
+  /* geometric ring shapes */
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .ring--1 { width: 100px; height: 100px; border: 9px solid var(--accent-purple); opacity: 0.55; top: -54px; right: -46px; }
+  .ring--2 { width: 60px; height: 60px; border: 7px solid var(--accent-yellow); opacity: 0.6; bottom: -40px; left: -48px; }
+  .ring--3 { width: 34px; height: 34px; background: var(--accent-pink); opacity: 0.5; top: 54%; right: -70px; }
+
+  .scroll-cue {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 90px;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--text-soft);
+  }
+
+  @media (max-width: 640px) {
+    .sticker-photo { width: 76px; }
+    .sticker-photo--a { top: -20px; left: -26px; }
+    .sticker-photo--b { width: 84px; bottom: -18px; right: -24px; }
+    .ring--1 { width: 64px; height: 64px; top: -32px; right: -26px; }
+    .ring--2 { width: 40px; height: 40px; bottom: -24px; left: -26px; }
+    .ring--3 { display: none; }
+    .scroll-cue { margin-top: 56px; }
+  }
+
+  /* ---------- Featured Work ---------- */
+  .section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 24px 24px 100px;
+    position: relative;
+    z-index: 2;
+  }
+  .section-label {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--accent-mint);
+    margin-bottom: 24px;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .work-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .work-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-mint);
+    box-shadow: 0 14px 28px rgba(43,240,176,0.14);
+  }
+  .work-card .thumb { height: 150px; overflow: hidden; background: #000; }
+  .work-card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .work-card .body { padding: 20px; }
+  .work-card h3 { font-family: "M PLUS Rounded 1c", sans-serif; font-weight: 800; font-size: 1.05rem; margin: 0 0 10px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .tag-row span { font-size: 0.66rem; padding: 4px 11px; border-radius: 999px; background: rgba(255,46,120,0.14); color: #ff8fb4; }
+  .tag-row span:nth-child(2) { background: rgba(43,240,176,0.14); color: #6cf5c7; }
+  .work-card p.desc { font-size: 0.84rem; color: var(--text-soft); margin: 0; }
+
+  @media (max-width: 760px) {
+    .card-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Header / language switcher ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(12,10,16,0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+  }
+  .site-wordmark {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+  }
+  .hamburger {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 0;
+  }
+  .hamburger span {
+    width: 20px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .lang-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 24px;
+    min-width: 190px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.5);
+    padding: 8px;
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+    pointer-events: none;
+    transition: opacity 0.16s ease, transform 0.16s ease;
+    z-index: 60;
+  }
+  .lang-panel.is-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .lang-panel-label {
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    color: var(--text-soft);
+    padding: 4px 10px 6px;
+  }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: var(--text);
+    background: none;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  .lang-option:hover { background: rgba(255,46,120,0.14); }
+  .lang-option.is-active {
+    background: rgba(43,240,176,0.16);
+    color: var(--accent-mint);
+    font-weight: 700;
+  }
+  .lang-option .flag { font-size: 1rem; }
+  .lang-panel-note {
+    margin-top: 6px;
+    padding: 8px 10px 2px;
+    border-top: 1px dashed var(--border);
+    font-size: 0.6rem;
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+</style>
+</head>
+<body>
+
+<p class="label">CONCEPT C2 — 選定デザインの最終ラフ（キャラクター撤去／4言語スイッチ配置）</p>
+<p class="note">
+  ※キャラクターイラスト6体はすべて撤去しました。装飾はリング（図形）のみです。<br>
+  ※ヘッダーに4言語スイッチ（日本語・中文・English・한국어）のUIを配置しました。表示切り替えのみで、翻訳コンテンツは未実装です。<br>
+  ※動画本体（HINABE醬.mp4）は未共有のため、投稿スチルをプレースホルダーとして使用中です。実データをいただき次第、動画に差し替えます。
+</p>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <span class="site-wordmark">米山佳穂</span>
+    <div style="position:relative;">
+      <button class="hamburger" id="menuToggle" aria-expanded="false" aria-controls="langPanel" aria-label="言語メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="lang-panel" id="langPanel" role="menu">
+        <p class="lang-panel-label">LANGUAGE / 言語</p>
+        <button class="lang-option is-active" role="menuitem" data-lang="ja"><span class="flag">🇯🇵</span> 日本語</button>
+        <button class="lang-option" role="menuitem" data-lang="zh"><span class="flag">🇨🇳</span> 中文</button>
+        <button class="lang-option" role="menuitem" data-lang="en"><span class="flag">🇬🇧</span> English</button>
+        <button class="lang-option" role="menuitem" data-lang="ko"><span class="flag">🇰🇷</span> 한국어</button>
+        <p class="lang-panel-note">※現在はUIのみです。各言語の翻訳コンテンツは今後追加予定です。</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero-chaos">
+  <div style="position:relative; z-index:2; text-align:center;">
+    <span class="eyebrow-badge">企画も、現場も、なんでもやる人。</span>
+  </div>
+
+  <div class="headline-zone">
+    <p class="name-jp">米山佳穂</p>
+    <p class="name-en">KAHO YONEYAMA ／ PORTFOLIO SITE</p>
+    <p class="sub-copy">
+      日本語学習コンテンツのSNS運用、Web・グラフィック制作、海外ゲスト対応。
+      ジャンルを問わず、企画から現場対応まで一人でやってきました。
+    </p>
+  </div>
+
+  <div class="collage">
+    <span class="ring ring--1"></span>
+    <span class="ring ring--2"></span>
+    <span class="ring ring--3"></span>
+
+    <div class="sticker-photo sticker-photo--a">
+      <div class="tape"></div>
+      <img src="assets/hinabe/still-02-taiwannoumi.webp" alt="台湾の海まじ最高だから！の投稿スチル">
+    </div>
+
+    <div class="video-card">
+      <img src="assets/hinabe/still-01-ohashi.webp" alt="お箸よ！の投稿スチル（HINABE醬プレースホルダー）">
+      <div class="play-overlay">
+        <span class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M6 4 L20 12 L6 20 Z"/></svg>
+        </span>
+      </div>
+      <div class="ig-bar"><span class="dot"></span> HINABE醬 ｜ 米山佳穂</div>
+    </div>
+
+    <div class="sticker-photo sticker-photo--b">
+      <div class="tape"></div>
+      <img src="assets/hinabe/still-03-reibou-nabe.webp" alt="冷房の効いた部屋で食べる火鍋はの投稿スチル">
+    </div>
+  </div>
+
+  <p class="scroll-cue">SCROLL ↓ FEATURED WORK</p>
+</section>
+
+<section class="section">
+  <p class="section-label">💬 Featured Work</p>
+  <div class="card-grid">
+    <article class="work-card">
+      <div class="thumb">
+        <img src="../public/images/portfolio/public/images/portfolio/expo-hostel-home-full-desktop-01.jpg" alt="Expo Hostel &amp; Cottage">
+      </div>
+      <div class="body">
+        <h3>Expo Hostel &amp; Cottage</h3>
+        <div class="tag-row"><span>情報設計</span><span>HTML/CSS</span><span>0→1</span></div>
+        <p class="desc">新しい長期滞在サービスのWebサイトを、企画から実装・公開まで一貫して担当。</p>
+      </div>
+    </article>
+    <article class="work-card">
+      <div class="thumb" style="background:#17131d; display:flex; align-items:center; justify-content:center; color:#6b6472; font-size:0.78rem;">他プロジェクトも同じ形式で並びます</div>
+      <div class="body">
+        <h3>Expo House</h3>
+        <div class="tag-row"><span>構成再設計</span><span>多言語運用</span></div>
+        <p class="desc">既存サイトの改善・保守性向上と、継続的な更新運用を担当。</p>
+      </div>
+    </article>
+    <article class="work-card">
+      <div class="thumb" style="background:#17131d; display:flex; align-items:center; justify-content:center; color:#6b6472; font-size:0.78rem;">okome_yade など</div>
+      <div class="body">
+        <h3>国際ゲスト対応</h3>
+        <div class="tag-row"><span>情報整理</span><span>案内資料</span></div>
+        <p class="desc">繰り返し寄せられる質問をもとに、案内資料を作成・整理。</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('menuToggle');
+    var panel = document.getElementById('langPanel');
+    if (!toggle || !panel) return;
+
+    function closePanel() {
+      panel.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    function openPanel() {
+      panel.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (panel.classList.contains('is-open')) closePanel();
+      else openPanel();
+    });
+
+    panel.querySelectorAll('.lang-option').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        panel.querySelectorAll('.lang-option').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        closePanel();
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && e.target !== toggle) closePanel();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePanel();
+    });
+  })();
+</script>
+
+</body>
+</html>
