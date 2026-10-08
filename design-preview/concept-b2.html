@@ -111,22 +111,11 @@
     border: 1px dashed #e8c877;
   }
 
-  .hero-copy .logotype-placeholder {
-    font-family: "Kiwi Maru", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    border-bottom: 3px solid var(--accent-pink);
-    display: inline-block;
-    padding-bottom: 4px;
-    margin-bottom: 14px;
-  }
-  .hero-copy .logotype-placeholder .en {
+  .hero-copy .logotype-img {
     display: block;
-    font-family: "Noto Sans JP", sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--text-soft);
-    margin-top: 2px;
+    max-width: 260px;
+    height: auto;
+    margin-bottom: 14px;
   }
   .hero-copy .eyebrow {
     display: inline-flex; align-items: center; gap: 6px;
@@ -205,11 +194,11 @@
     border-top: 1px dashed var(--border);
   }
   .avatar-comment .avatar {
-    width: 34px; height: 34px; border-radius: 50%; overflow: hidden;
+    width: 38px; height: 38px; border-radius: 50%; overflow: hidden;
     flex-shrink: 0; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.12);
     background: var(--accent-yellow-soft);
   }
-  .avatar-comment .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar-comment .avatar img { width: 100%; height: 100%; object-fit: contain; padding: 3px; }
   .avatar-comment .bubble {
     background: var(--bg);
     border: 1px solid var(--border);
@@ -245,7 +234,7 @@
 <body>
 
 <p class="label">CONCEPT B2 — Playful Pop（更新版：参考サイトの技法を反映）</p>
-<p class="note">※吹き出しアバター部分は、ご本人のキャラクター画像をいただき次第、実際のイラストに差し替えます（現在はプロフィール写真で仮置き）</p>
+<p class="note">※ロゴタイプとアバター3体（柴犬・うさぎ・鶏）はご本人の実素材に差し替え済みです。ヒーロー中央の丸い写真は「似顔絵イラスト」用の仮置き（現在はプロフィール写真）です</p>
 
 <section class="hero">
   <div class="blob-bg">
@@ -257,10 +246,10 @@
         <img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt="米山佳穂">
         <div class="bubble-tail"></div>
       </div>
-      <span class="asset-pending">※オリジナルキャラクター画像に差し替え予定</span>
+      <span class="asset-pending">※似顔絵イラストに差し替え予定（現在は写真で仮置き）</span>
     </div>
     <div class="hero-copy">
-      <p class="logotype-placeholder">米山佳穂<span class="en">YONEYAMA KAHO — Portfolio Site（ロゴ画像差し替え予定）</span></p>
+      <img class="logotype-img" src="assets/logotype.png" alt="米山佳穂 / YONEYAMA KAHO Portfolio Site">
       <p class="eyebrow">★ コンテンツ企画・制作 / SNS・Web運用</p>
       <h1 class="hero-catch"><mark>伝えると、<br>ちょっと楽しい。</mark></h1>
       <p class="hero-desc">
@@ -293,7 +282,7 @@
         </div>
         <p class="desc">新しい長期滞在サービスのWebサイトを、企画から実装・公開まで一貫して担当。</p>
         <div class="avatar-comment">
-          <div class="avatar"><img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt=""></div>
+          <div class="avatar"><img src="assets/characters/shiba.png" alt="柴犬キャラクター"></div>
           <div class="bubble">写真選定からコーディングまで、ひとりで一気に作りました！</div>
         </div>
       </div>
@@ -308,7 +297,7 @@
         </div>
         <p class="desc">既存サイトの改善・保守性向上と、継続的な更新運用を担当。</p>
         <div class="avatar-comment">
-          <div class="avatar"><img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt=""></div>
+          <div class="avatar"><img src="assets/characters/rabbit.png" alt="うさぎキャラクター"></div>
           <div class="bubble">4言語の運用、地道ですが大事な仕事です。</div>
         </div>
       </div>
@@ -323,7 +312,7 @@
         </div>
         <p class="desc">繰り返し寄せられる質問をもとに、案内資料を作成・整理。</p>
         <div class="avatar-comment">
-          <div class="avatar"><img src="../public/images/portfolio/public/images/portfolio/profile-kaho-main.jpg" alt=""></div>
+          <div class="avatar"><img src="assets/characters/rooster.png" alt="鶏キャラクター"></div>
           <div class="bubble">実際のやり取りから生まれた、現場発の資料です。</div>
         </div>
       </div>
