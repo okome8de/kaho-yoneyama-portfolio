@@ -637,14 +637,6 @@ a {
   display: contents;
 }
 
-.ig-profile-caption {
-  grid-column: 1 / -1;
-  font-size: 0.7rem;
-  color: var(--color-text-soft);
-  text-align: center;
-  margin-top: -2px;
-}
-
 .media-square {
   aspect-ratio: 1 / 1;
   margin-bottom: 12px;
